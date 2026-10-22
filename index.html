@@ -92,6 +92,27 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .home .quick .tile{min-height:110px}
 @media (max-width:860px){.lhero,.home .quick{grid-template-columns:1fr 1fr}.lhero{grid-template-columns:1fr}.lhero img{max-height:170px}.sechead{grid-template-columns:auto minmax(0,1fr)}.sechead img{display:none}.mainnav a{padding:6px 8px}}
 @media (max-width:520px){.home .quick{grid-template-columns:1fr 1fr}.mainnav a[data-go=home]{display:none}}
+/* certificate */
+.namebar{display:flex;flex-direction:column;gap:8px;background:var(--lime);color:var(--lime-ink);border-radius:20px;padding:14px 18px}
+.namebar input{background:var(--surface);font-size:1.05rem}
+.namebar.ok{flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap;background:var(--violet-soft);color:var(--ink)}
+.namebar.ok b{color:var(--violet);font-family:var(--display)}
+.certwrap{position:fixed;inset:0;z-index:41;overflow:auto;background:rgba(15,12,30,.72);display:flex;flex-direction:column;align-items:center;gap:14px;padding-block:calc(20px + env(safe-area-inset-top,0px)) calc(20px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.cert{width:min(860px,100%);aspect-ratio:1.414;background:#5E52B4;border-radius:10px;padding:clamp(8px,1.6vw,18px);box-shadow:0 30px 80px rgba(0,0,0,.4);animation:enter .6s ease-out;flex:none}
+.cert-in{height:100%;background:#fff;color:#1F1B36;border:clamp(3px,.6vw,6px) solid #DCE38F;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(2px,.8vw,8px);padding:clamp(10px,3vw,30px);text-align:center;position:relative;overflow:hidden}
+.cert-top{position:absolute;top:clamp(8px,2vw,18px);inset-inline:clamp(10px,3vw,28px);display:flex;justify-content:space-between;color:#6B6688;font-size:clamp(.55rem,1.4vw,.85rem);gap:8px}
+.medal{width:clamp(40px,8vw,74px);aspect-ratio:1;border-radius:50%;background:#5E52B4;display:grid;place-items:center}
+.medal svg{width:58%;height:58%;fill:#DCE38F;stroke:#DCE38F}
+.cert-k{font-family:var(--display);font-weight:800;color:#5E52B4;font-size:clamp(1.3rem,4.6vw,2.8rem);line-height:1.2}
+.cert-p{margin:0;font-size:clamp(.7rem,1.9vw,1.15rem);line-height:1.7}
+.cert-name{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,4.6vw,2.7rem);border-bottom:clamp(3px,.5vw,5px) solid #DCE38F;padding-inline:clamp(10px,3vw,30px);line-height:1.5}
+.cert-badge{background:#DCE38F;color:#2D3108;border-radius:999px;padding:clamp(2px,.5vw,6px) clamp(10px,2vw,22px);font-weight:700;font-size:clamp(.65rem,1.7vw,1rem)}
+.cert-foot{width:100%;display:flex;justify-content:space-between;align-items:flex-end;margin-top:clamp(4px,1.5vw,14px);font-size:clamp(.55rem,1.3vw,.85rem);color:#6B6688}
+.cert-foot>div{display:flex;flex-direction:column;align-items:center;gap:clamp(8px,2vw,22px);min-width:25%}
+.cert-foot .sig{display:block;width:100%;border-bottom:1px solid #6B6688}
+.cert-foot .stars{flex-direction:row;gap:4px}
+.cert-foot .stars svg{width:clamp(14px,2.6vw,26px);height:clamp(14px,2.6vw,26px);fill:#A79FE0;stroke:none}
+.cert-foot .stars svg:nth-child(2){fill:#5E52B4;transform:scale(1.25)}
 /* adventure map */
 .advmap{background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;gap:18px;overflow:hidden;position:relative;
   background-image:radial-gradient(var(--violet-soft) 1.5px,transparent 1.5px);background-size:22px 22px}
@@ -866,7 +887,7 @@ function buildAdventure(k,site){
  drawMap();showMap(true);
  const sn=$("#subnav");sn.innerHTML=`<button data-map>${ic("map")} الخريطة</button>`+secs.map((s,i)=>`<button data-st="${i}">${ar(i+1)}. ${esc(s.t)}</button>`).join("");sn.hidden=false;
  $("[data-map]",sn).onclick=()=>showMap();
- $$("[data-st]",sn).forEach(b=>b.onclick=()=>{const i=+b.dataset.st;if(canOpen(i))openStation(i);else nudge(i)});
+ $$("[data-st]",sn).forEach(b=>b.onclick=()=>{const i=+b.dataset.st;if(!canOpen(i))nudge(i);else if(needName())askName();else openStation(i)});
 }
 function advDone(){return store.get(adv.key,[])}
 function canOpen(i){const d=advDone();return adv.teacher||i===0||d.includes(i-1)||d.includes(i)}
@@ -876,11 +897,13 @@ function drawMap(){
  $("#advStars")&&( $("#advStars").textContent=ar(stars));
  adv.map.innerHTML=`<div class="maphead"><div><div class="eyebrow"><i></i>خريطة المغامرة</div><h2 class="h2" style="margin-top:4px">رحلة المستكشفة في عالم التجارة الإلكترونية</h2><p class="muted" style="margin:4px 0 0">انطلقن من المحطة الأولى، أنجزن أنشطة كل محطة، واجمعن النجوم حتى تصلن إلى الكنز.</p></div>
  <div class="starbox">${ic("star")}<b>${ar(stars)}</b><span>/ ${ar(N)}</span></div></div>
+ ${nameBar()}
  <div class="trail">${secs.map((s,i)=>{const st=d.includes(i)?"done":(canOpen(i)?(i===cur?"cur":"open"):"lock");const off=WAVE[i%WAVE.length];
   return `<div class="stop ${st}" style="--o:${off}"><button class="node" data-i="${i}" aria-label="المحطة ${i+1}: ${esc(s.t)}">${st==="lock"?ic("lock"):st==="done"?ic("star"):ic(ST_ICONS[i%ST_ICONS.length])}</button><div class="lab"><small>المحطة ${ar(i+1)}</small>${esc(s.t)}</div>${i===cur?`<img class="hero-av" src="img/brain.webp" alt=""><span class="bubble">${i===0&&!stars?"ابدئي من هنا!":"المحطة التالية"}</span>`:""}</div>`}).join("")}
   <div class="stop chest ${all?"cur":"lock"}" style="--o:0"><button class="node" data-chest aria-label="الكنز">${ic("chest")}</button><div class="lab"><small>نهاية المغامرة</small>الكنز</div></div></div>
  <div class="row" style="justify-content:center"><label class="chip" style="cursor:pointer"><input type="checkbox" id="advFree" ${adv.teacher?"checked":""}> وضع المعلمة: فتح كل المحطات</label><button class="btn" id="advReset">${ic("redo")} بدء المغامرة من جديد</button></div>`;
- $$(".node[data-i]",adv.map).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(canOpen(i))openStation(i);else nudge(i)});
+ $$(".node[data-i]",adv.map).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(!needName()&&canOpen(i))openStation(i);else if(canOpen(i))askName();else nudge(i)});
+ wireName();
  $("[data-chest]",adv.map).onclick=()=>{if(all)treasure();else{const el=$(".chest",adv.map);el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake")}};
  $("#advFree",adv.map).onchange=e=>{adv.teacher=e.target.checked;store.set("advfree",adv.teacher);drawMap()};
  $("#advReset",adv.map).onclick=()=>{store.set(adv.key,[]);drawMap()};
@@ -895,9 +918,7 @@ function openStation(i){adv.map.hidden=true;adv.pager.hidden=true;adv.hero.hidde
  $$("video").forEach(v=>v.pause());window.scrollTo({top:0});const s=adv.stations[i];s.classList.remove("enter");void s.offsetWidth;s.classList.add("enter")}
 function finishStation(i){const d=advDone();if(!d.includes(i)){d.push(i);store.set(adv.key,d)}burst();showMap();
  if(d.length>=secs.length)setTimeout(treasure,700)}
-function treasure(){burst();setTimeout(burst,400);
- const d=drawer("الكنز",`<div style="text-align:center;display:grid;gap:12px;justify-items:center"><div class="chestbig">${ic("chest")}</div><h2 class="h2" style="color:var(--violet)">أحسنتنّ يا مستكشفات!</h2><p style="margin:0;font-weight:600">أنهيتنّ مغامرة «${esc(LESSONS[adv.k].name)}» وجمعتنّ ${ar(secs.length)} نجمة.</p><div class="answer">لقب الحصة: مستكشفة التجارة الإلكترونية</div><button class="btn v" id="tNext">انطلقي إلى المغامرة التالية</button></div>`);
- $("#tNext",d).onclick=()=>{closeLayer();go(adv.k==="l1"?"l2":"l1")}}
+function treasure(){burst();setTimeout(burst,400);showCert()}
 function go(lesson){
  cur=lesson;$$(".mainnav a").forEach(a=>a.classList.toggle("cur",a.dataset.go===(lesson||"home")));
  adv=null;if(!lesson){$("#subnav").hidden=true;secs=[];renderHome()}else{$("#lessonName").textContent=LESSONS[lesson].short;renderLesson(lesson)}
@@ -931,6 +952,58 @@ document.addEventListener("keydown",e=>{
  else if(k==="r"||k==="R"||k==="ق")openTool("pick");
  else if(k==="f"||k==="F"||k==="ب")toggleFs();
 });
+
+/* ---------- student name + certificate ---------- */
+const studentName=()=>store.get("student","");
+function needName(){return !adv.teacher&&!studentName()}
+function nameBar(){const n=studentName();
+ return n?`<div class="namebar ok"><span>المستكشفة: <b>${esc(n)}</b></span><button class="btn" id="nmEdit">تغيير الاسم</button></div>`
+ :`<div class="namebar"><label for="nmIn"><b>قبل الانطلاق:</b> اكتبي اسمك لتظهر شهادتك باسمك في نهاية المغامرة</label><div class="addrow"><input id="nmIn" maxlength="40" placeholder="اسمك الثلاثي…" autocomplete="off"><button class="btn v" id="nmGo">${ic("check")} ابدئي المغامرة</button></div></div>`}
+function wireName(){const inp=$("#nmIn",adv.map);
+ if(inp){const save=()=>{const v=inp.value.trim();if(!v){askName();return}store.set("student",v);burst();drawMap()};$("#nmGo",adv.map).onclick=save;inp.onkeydown=e=>{if(e.key==="Enter")save()}}
+ const ed=$("#nmEdit",adv.map);if(ed)ed.onclick=()=>{store.set("student","");drawMap();setTimeout(()=>{const i=$("#nmIn",adv.map);i&&i.focus()},50)}}
+function askName(){showMap();const nb=$(".namebar",adv.map);if(!nb)return;nb.classList.remove("shake");void nb.offsetWidth;nb.classList.add("shake");nb.scrollIntoView({block:"center",behavior:"smooth"});const i=$("#nmIn",adv.map);i&&i.focus()}
+function hijri(){try{return new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric"}).format(new Date())}catch(e){return new Date().toLocaleDateString("ar")}}
+function showCert(){
+ const name=studentName()||"المستكشفة المتميزة",L=LESSONS[adv.k],n=secs.length,date=hijri();
+ layer.innerHTML=`<div class="scrim"></div><div class="certwrap" role="dialog" aria-label="شهادة تحفيز"><div class="cert">
+  <div class="cert-in"><div class="cert-top"><span>الوحدة الثالثة · التجارة الإلكترونية</span><span>${esc(date)}</span></div>
+  <div class="medal">${ic("star")}</div><div class="cert-k">شهادة تحفيز</div>
+  <p class="cert-p">تُمنح هذه الشهادة للمستكشفة</p><div class="cert-name">${esc(name)}</div>
+  <p class="cert-p">لإتمامها مغامرة «${esc(L.name)}» بنجاح،<br>وجمعها ${ar(n)} نجمة في رحلتها عبر عالم التجارة الإلكترونية.</p>
+  <div class="cert-badge">لقب الحصة: مستكشفة التجارة الإلكترونية</div>
+  <div class="cert-foot"><div><small>معلمة المادة</small><span class="sig"></span></div><div class="stars">${ic("star")}${ic("star")}${ic("star")}</div><div><small>نتمنى لكِ دوام التميّز</small><span class="sig"></span></div></div></div></div>
+  <div class="row" style="justify-content:center"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button><button class="btn v" id="cNext">انطلقي إلى المغامرة التالية</button><button class="btn" id="cClose">إغلاق</button></div><p id="cMsg" style="text-align:center;margin:0;color:#fff"></p></div>`;
+ $(".scrim",layer).onclick=closeLayer;$("#cClose",layer).onclick=closeLayer;
+ $("#cNext",layer).onclick=()=>{closeLayer();go(adv.k==="l1"?"l2":"l1")};
+ $("#cSave",layer).onclick=()=>saveCert(name,L.name,n,date);
+}
+async function saveCert(name,lesson,n,date){
+ const msg=$("#cMsg",layer);
+ try{await document.fonts.ready}catch(e){}
+ const W=1600,H=1130,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+ const V="#5E52B4",LI="#DCE38F",INK="#1F1B36",MU="#6B6688",D='"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif',B='"IBM Plex Sans Arabic",Tahoma,sans-serif';
+ x.fillStyle="#FFFFFF";x.fillRect(0,0,W,H);
+ x.fillStyle=V;x.fillRect(0,0,W,H);x.fillStyle="#FFFFFF";x.fillRect(36,36,W-72,H-72);
+ x.strokeStyle=LI;x.lineWidth=10;x.strokeRect(62,62,W-124,H-124);
+ x.fillStyle="#EEEBF9";x.beginPath();x.arc(140,H-140,190,0,7);x.fill();x.beginPath();x.arc(W-120,150,150,0,7);x.fill();
+ x.direction="rtl";x.textAlign="center";
+ const star=(cx,cy,r,f)=>{x.beginPath();for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;x.lineTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr)}x.closePath();x.fillStyle=f;x.fill()};
+ x.fillStyle=V;x.beginPath();x.arc(W/2,210,70,0,7);x.fill();star(W/2,214,42,LI);
+ x.fillStyle=MU;x.font=`500 26px ${B}`;x.textAlign="right";x.fillText("الوحدة الثالثة · التجارة الإلكترونية",W-110,130);x.textAlign="left";x.fillText(date,110,130);x.textAlign="center";
+ x.fillStyle=V;x.font=`800 84px ${D}`;x.fillText("شهادة تحفيز",W/2,380);
+ x.fillStyle=INK;x.font=`500 36px ${B}`;x.fillText("تُمنح هذه الشهادة للمستكشفة",W/2,460);
+ x.fillStyle=INK;x.font=`800 78px ${D}`;x.fillText(name,W/2,575);
+ x.strokeStyle=LI;x.lineWidth=8;x.beginPath();x.moveTo(W/2-300,610);x.lineTo(W/2+300,610);x.stroke();
+ x.fillStyle=INK;x.font=`500 34px ${B}`;x.fillText(`لإتمامها مغامرة «${lesson}» بنجاح،`,W/2,690);x.fillText(`وجمعها ${ar(n)} نجمة في رحلتها عبر عالم التجارة الإلكترونية.`,W/2,742);
+ x.fillStyle=LI;const bw=620;x.beginPath();x.roundRect?x.roundRect(W/2-bw/2,790,bw,70,35):x.rect(W/2-bw/2,790,bw,70);x.fill();x.fillStyle="#2D3108";x.font=`700 32px ${D}`;x.fillText("لقب الحصة: مستكشفة التجارة الإلكترونية",W/2,836);
+ [W/2-70,W/2,W/2+70].forEach((cx,i)=>star(cx,950,i==1?34:26,i==1?V:"#A79FE0"));
+ x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("معلمة المادة",W-330,940);x.fillText("نتمنى لكِ دوام التميّز",330,940);
+ x.strokeStyle=MU;x.lineWidth=2;[[W-330],[330]].forEach(([cx])=>{x.beginPath();x.moveTo(cx-150,990);x.lineTo(cx+150,990);x.stroke()});
+ const url=c.toDataURL("image/png");
+ const a=document.createElement("a");a.href=url;a.download=`شهادة-${name}.png`;document.body.appendChild(a);a.click();a.remove();
+ msg.innerHTML=`إذا لم يبدأ التنزيل تلقائيًا، اضغطي على الصورة مطوّلًا أو بالزر الأيمن واختاري «حفظ الصورة»:<br><img src="${url}" alt="شهادة ${esc(name)}" style="margin-top:8px;max-height:200px;border-radius:10px;border:1px solid var(--line)">`;
+}
 
 /* ---------- tools ---------- */
 const layer=$("#layer");
