@@ -119,7 +119,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .codetoast .prompt{color:#7EE2A8;font-family:ui-monospace,Consolas,monospace;font-weight:800}
 .codetoast.bad .prompt{color:#F4A35B}
 .codetoast .dots{display:flex;gap:4px;margin-inline-end:4px}.codetoast .dots i{width:8px;height:8px;border-radius:50%;background:#F26B6B}.codetoast .dots i:nth-child(2){background:#F4C95B}.codetoast .dots i:nth-child(3){background:#7EE2A8}
-.cert-code{background:#1F1B36;color:#7EE2A8;border-radius:8px;padding:clamp(2px,.5vw,6px) clamp(10px,2vw,20px);font-weight:600;font-size:clamp(.6rem,1.5vw,.95rem)}
+.cert-code{background:#EEEBF9;color:#5E52B4;border:1px solid #CFC8F0;border-radius:8px;padding:clamp(2px,.5vw,6px) clamp(10px,2vw,20px);font-weight:600;font-size:clamp(.6rem,1.5vw,.95rem)}
 /* adventure map */
 .advmap{background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;gap:18px;overflow:hidden;position:relative;
   background-image:radial-gradient(var(--violet-soft) 1.5px,transparent 1.5px);background-size:22px 22px}
@@ -842,7 +842,7 @@ function mark(el){if(!el||!el.dataset.act||el.classList.contains("done"))return;
  const d=store.get("done-"+cur,[]);if(!d.includes(el.id)){d.push(el.id);store.set("done-"+cur,d)}updMeter()}
 function done(el){mark(el)}
 function updMeter(){const all=$$(".block[data-act]",main),d=all.filter(b=>b.classList.contains("done")).length;const m=$("#meterFill");
- if(m){m.style.width=(all.length?d/all.length*100:0)+"%";$("#meterTxt").textContent=`إنجاز الفصل: ${ar(d)} من ${ar(all.length)} أنشطة`}
+ if(m){m.style.width=(all.length?d/all.length*100:0)+"%";$("#meterTxt").textContent=`إنجازك: ${ar(d)} من ${ar(all.length)} أنشطة`}
  secs.forEach(s=>{const bl=all.filter(b=>b.dataset.sec===s.id);const ch=$(`#subnav [data-to="${s.id}"]`);if(ch&&bl.length&&bl.every(b=>b.classList.contains("done"))&&!$(".ok",ch))ch.insertAdjacentHTML("afterbegin",'<span class="ok">✓</span>')})}
 function renderLesson(k){
  const L=LESSONS[k];secs=[];
@@ -999,7 +999,7 @@ async function saveCert(name,lesson,n,date){
  x.fillStyle=INK;x.font=`800 78px ${D}`;x.fillText(name,W/2,575);
  x.strokeStyle=LI;x.lineWidth=8;x.beginPath();x.moveTo(W/2-300,610);x.lineTo(W/2+300,610);x.stroke();
  x.fillStyle=INK;x.font=`500 34px ${B}`;x.fillText(`لإتمامها مغامرة «${lesson}» بنجاح،`,W/2,690);x.fillText(`وجمعها ${ar(n)} نجمة في رحلتها عبر عالم التجارة الإلكترونية.`,W/2,742);
- x.fillStyle=LI;const bw=620;x.beginPath();x.roundRect?x.roundRect(W/2-bw/2,790,bw,70,35):x.rect(W/2-bw/2,790,bw,70);x.fill();x.fillStyle="#2D3108";x.font=`700 32px ${D}`;x.fillText("لقب الحصة: مستكشفة التجارة الإلكترونية",W/2,836);x.fillStyle="#1F1B36";x.beginPath();x.roundRect?x.roundRect(W/2-260,878,520,50,12):x.rect(W/2-260,878,520,50);x.fill();x.fillStyle="#7EE2A8";x.font=`600 26px ${B}`;x.fillText("إذا (اجتهدتِ) ← المستقبل = مشرق ✓",W/2,912);
+ x.fillStyle=LI;const bw=620;x.beginPath();x.roundRect?x.roundRect(W/2-bw/2,790,bw,70,35):x.rect(W/2-bw/2,790,bw,70);x.fill();x.fillStyle="#2D3108";x.font=`700 32px ${D}`;x.fillText("لقب الحصة: مستكشفة التجارة الإلكترونية",W/2,836);x.fillStyle="#EEEBF9";x.beginPath();x.roundRect?x.roundRect(W/2-260,878,520,50,12):x.rect(W/2-260,878,520,50);x.fill();x.strokeStyle="#CFC8F0";x.lineWidth=2;x.stroke();x.fillStyle="#5E52B4";x.font=`700 26px ${B}`;x.fillText("إذا (اجتهدتِ) ← المستقبل = مشرق ✓",W/2,912);
  [W/2-70,W/2,W/2+70].forEach((cx,i)=>star(cx,990,i==1?34:26,i==1?V:"#A79FE0"));
  x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("معلمتك",W-330,915);x.fillStyle="#5E52B4";x.font=`800 40px ${D}`;x.fillText("أمل الشهري",W-330,970);x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("نتمنى لكِ دوام التميّز",330,940);
  x.strokeStyle=MU;x.lineWidth=2;[[330]].forEach(([cx])=>{x.beginPath();x.moveTo(cx-150,990);x.lineTo(cx+150,990);x.stroke()});
@@ -1038,26 +1038,6 @@ function openTool(t){
   $("#tStart",d).onclick=()=>{if(tRun){tRun=false;clearInterval(tInt)}else if(tLeft>0){tRun=true;clearInterval(tInt);tInt=setInterval(tick,1000)}updTimer()};
   $("#tReset",d).onclick=()=>{tRun=false;clearInterval(tInt);tLeft=tTotal;updTimer()};
   $("#tHide",d).onclick=()=>{tRun=false;clearInterval(tInt);tLeft=0;tTotal=0;updTimer();closeLayer()};
- }
- if(t==="pick"){
-  const names=store.get("names","");
-  const d=drawer("اختيار طالبة عشوائيًا",`<div class="picked" id="picked">؟</div><button class="btn v" id="pickBtn" style="justify-content:center">اختاري طالبة</button><label class="muted" for="namesTa">أسماء الطالبات (اسم في كل سطر) — تُحفظ على هذا الجهاز:</label><textarea id="namesTa" placeholder="نورة&#10;ريم&#10;سارة…">${esc(names)}</textarea><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="noRepeat" checked> عدم تكرار الاسم حتى يُختار الجميع</label>`);
-  const ta=$("#namesTa",d);ta.oninput=()=>store.set("names",ta.value);
-  let used=store.get("used",[]);
-  $("#pickBtn",d).onclick=()=>{let list=ta.value.split("\n").map(x=>x.trim()).filter(Boolean);if(!list.length){$("#picked",d).textContent="أضيفي الأسماء أولًا";return}
-   let pool=$("#noRepeat",d).checked?list.filter(n=>!used.includes(n)):list;if(!pool.length){used=[];pool=list}
-   let n=0;const out=$("#picked",d);const final=pool[Math.floor(Math.random()*pool.length)];
-   const spin=setInterval(()=>{out.textContent=list[Math.floor(Math.random()*list.length)];if(++n>14){clearInterval(spin);out.textContent=final;used.push(final);store.set("used",used);burst()}},70)};
- }
- if(t==="groups"){
-  let g=store.get("groups",[{n:"المجموعة الأولى",p:0},{n:"المجموعة الثانية",p:0},{n:"المجموعة الثالثة",p:0},{n:"المجموعة الرابعة",p:0}]);
-  const d=drawer("نقاط المجموعات",`<div class="groups"></div><div class="row"><button class="btn" id="gAdd">إضافة مجموعة</button><button class="btn" id="gZero">تصفير النقاط</button></div>`);
-  const draw=()=>{const box=$(".groups",d);const max=Math.max(...g.map(x=>x.p));box.innerHTML=g.map((x,i)=>`<div class="grp"${x.p===max&&max>0?' style="border-color:var(--violet)"':""}><input value="${esc(x.n)}" data-i="${i}" aria-label="اسم المجموعة"><button data-m="${i}">−</button><span class="pts">${ar(x.p)}</span><button data-p="${i}">+</button></div>`).join("");
-   $$("input",box).forEach(n=>n.oninput=()=>{g[+n.dataset.i].n=n.value;store.set("groups",g)});
-   $$("[data-p]",box).forEach(b=>b.onclick=()=>{g[+b.dataset.p].p++;store.set("groups",g);draw()});
-   $$("[data-m]",box).forEach(b=>b.onclick=()=>{g[+b.dataset.m].p=Math.max(0,g[+b.dataset.m].p-1);store.set("groups",g);draw()})};
-  $("#gAdd",d).onclick=()=>{g.push({n:"مجموعة "+ar(g.length+1),p:0});store.set("groups",g);draw()};
-  $("#gZero",d).onclick=()=>{g.forEach(x=>x.p=0);store.set("groups",g);draw()};draw();
  }
 }
 function toggleFs(){try{if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen().catch(()=>{})}catch(e){}}
