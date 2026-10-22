@@ -120,6 +120,11 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .codetoast.bad .prompt{color:#F4A35B}
 .codetoast .dots{display:flex;gap:4px;margin-inline-end:4px}.codetoast .dots i{width:8px;height:8px;border-radius:50%;background:#F26B6B}.codetoast .dots i:nth-child(2){background:#F4C95B}.codetoast .dots i:nth-child(3){background:#7EE2A8}
 .cert-code{background:#EEEBF9;color:#5E52B4;border:1px solid #CFC8F0;border-radius:8px;padding:clamp(2px,.5vw,6px) clamp(10px,2vw,20px);font-weight:600;font-size:clamp(.6rem,1.5vw,.95rem)}
+.certsteps{display:flex;flex-direction:column;gap:10px;width:min(860px,100%)}
+.cstep{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;color:#1F1B36;border-radius:16px;padding:10px 14px}
+.cstep b{width:34px;height:34px;border-radius:50%;background:#5E52B4;color:#fff;display:grid;place-items:center;font-family:var(--display);flex:none}
+.cstep span{flex:1;min-width:150px;font-weight:700}
+.cstep a.btn{text-decoration:none}
 /* adventure map */
 .advmap{background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;gap:18px;overflow:hidden;position:relative;
   background-image:radial-gradient(var(--violet-soft) 1.5px,transparent 1.5px);background-size:22px 22px}
@@ -530,8 +535,6 @@ l1:{name:"مقدمة في التجارة الإلكترونية (١)",short:"ا�
   cards:[{img:"salla",back:"سلة"},{img:"noon",back:"نون"},{img:"shein",back:"شي إن"},{img:"amazon",back:"أمازون"}],
   reveal:[{q:"ما الرابط المشترك بين الصور السابقة؟",a:"جميعها <b>متاجر ومنصات للتجارة الإلكترونية</b> نشتري منها عبر الإنترنت."},{q:"اذكري تجربة لكِ مع أحدها (إيجابية أو سلبية).",a:"اكتبي تجربتك في سطرين، أو شاركيها مع معلمتك في الحصة."}]},
  {k:"title",sec:"عنوان الدرس",unit:"الوحدة الثالثة: التجارة الإلكترونية",lesson:"الدرس الأول",part:"مقدمة في التجارة الإلكترونية (١)"},
- {k:"goals",sec:"أهداف الدرس",outcomes:["ترتيب تعريف التجارة الإلكترونية","استنتاج الأنظمة التي تعتمد عليها التجارة الإلكترونية","المقارنة بين مزايا وعيوب التجارة الإلكترونية","المقارنة بين نماذج التجارة الإلكترونية"],elements:["التجارة الإلكترونية","الأنظمة التي تعتمد عليها التجارة الإلكترونية","نماذج التجارة الإلكترونية","الأسواق الإلكترونية"]},
- {k:"kwl",sec:"جدول التعلّم",id:"l1",meta:{s:"جدول التعلّم",sk:"الاستنتاج",t:"فردي",m:2}},
  {k:"divider",sec:"التجارة الإلكترونية",title:"التجارة الإلكترونية",sub:"ماذا نعني بها؟",img:"shop"},
  {k:"wordorder",sec:"التجارة الإلكترونية",title:"سحابة الكلمات",meta:{s:"سحابة الكلمات",sk:"الترتيب، الدقة",t:"فردي",m:2},
   q:"أرتّب الكلمات التالية للوصول إلى تعريف <b>التجارة الإلكترونية</b>:",
@@ -594,8 +597,6 @@ l2:{name:"مقدمة في التجارة الإلكترونية (٢)",short:"ا�
   q:"أجيبي بـ «صح» أو «خطأ» بناءً على ما تناولناه في الدرس الماضي:",
   items:[["التجارة الإلكترونية تتم عبر الإنترنت بشكل كلي أو جزئي.",true,""],["eBay مثال على نموذج شركة إلى شركة B2B.",false,"eBay مثال على نموذج مستهلك إلى مستهلك C2C."],["من مزايا التجارة الإلكترونية معاينة المنتج على الواقع قبل الشراء.",false,"عدم القدرة على المعاينة من عيوبها."],["Alibaba مثال على الأسواق المستقلة.",true,""],["البريد الإلكتروني من الأنظمة التي تعتمد عليها التجارة الإلكترونية.",true,""]]},
  {k:"title",sec:"عنوان الدرس",unit:"الوحدة الثالثة: التجارة الإلكترونية",lesson:"الدرس الأول",part:"مقدمة في التجارة الإلكترونية (٢)"},
- {k:"goals",sec:"أهداف الدرس",outcomes:["ترتيب تعريف السلع الافتراضية","التمثيل للسلع الافتراضية","طريقة العثور على المنتجات"],elements:["السلع الافتراضية","التسوق عبر الإنترنت","الدخول للمتجر الإلكتروني","تطبيق عملي"]},
- {k:"kwl",sec:"جدول التعلّم",id:"l2",meta:{s:"جدول التعلّم",sk:"الاستنتاج",t:"فردي",m:2}},
  {k:"divider",sec:"السلع الافتراضية",title:"السلع الافتراضية",img:"games"},
  {k:"wordorder",sec:"السلع الافتراضية",title:"سحابة الكلمات",meta:{s:"سحابة الكلمات",sk:"الترتيب، الدقة",t:"فردي",m:1},
   q:"أرتّب الكلمات التالية للوصول إلى تعريف <b>السلعة الافتراضية</b>:",
@@ -976,7 +977,8 @@ function showCert(){
   <div class="cert-badge">لقب الحصة: مستكشفة التجارة الإلكترونية</div>
   <div class="cert-code">إذا (اجتهدتِ) ← المستقبل = مشرق ✓</div>
   <div class="cert-foot"><div><small>معلمتك</small><b class="tname">أمل الشهري</b></div><div class="stars">${ic("star")}${ic("star")}${ic("star")}</div><div><small>نتمنى لكِ دوام التميّز</small><span class="sig"></span></div></div></div></div>
-  <div class="row" style="justify-content:center"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button>${sendBtn(adv.k,"أرسلي إجاباتك ونتيجتك لمعلمتك")}<button class="btn v" id="cNext">انطلقي إلى المغامرة التالية</button><button class="btn" id="cClose">إغلاق</button></div><p id="cMsg" style="text-align:center;margin:0;color:#fff"></p></div>`;
+  <div class="certsteps">${UPLOAD_URL?`<div class="cstep"><b>١</b><span>احفظي شهادتك على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div><div class="cstep"><b>٢</b><span>ارفعيها لمعلمتك في مجلد «ثالث متوسط»</span><a class="btn v" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("link")} رفع الشهادة لمعلمتي</a></div>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
+  <div class="row" style="justify-content:center">${sendBtn(adv.k,"أرسلي إجاباتك ونتيجتك لمعلمتك")}<button class="btn" id="cNext">انطلقي إلى المغامرة التالية</button><button class="btn" id="cClose">إغلاق</button></div><p id="cMsg" style="text-align:center;margin:0;color:#fff"></p></div>`;
  $(".scrim",layer).onclick=closeLayer;$("#cClose",layer).onclick=closeLayer;
  $("#cNext",layer).onclick=()=>{closeLayer();go(adv.k==="l1"?"l2":"l1")};
  $("#cSave",layer).onclick=()=>saveCert(name,L.name,n,date);
@@ -1004,7 +1006,7 @@ async function saveCert(name,lesson,n,date){
  x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("معلمتك",W-330,915);x.fillStyle="#5E52B4";x.font=`800 40px ${D}`;x.fillText("أمل الشهري",W-330,970);x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("نتمنى لكِ دوام التميّز",330,940);
  x.strokeStyle=MU;x.lineWidth=2;[[330]].forEach(([cx])=>{x.beginPath();x.moveTo(cx-150,990);x.lineTo(cx+150,990);x.stroke()});
  const url=c.toDataURL("image/png");
- const a=document.createElement("a");a.href=url;a.download=`شهادة-${name}.png`;document.body.appendChild(a);a.click();a.remove();
+ const a=document.createElement("a");a.href=url;a.download=`شهادة - ${name} - ${lesson}.png`;document.body.appendChild(a);a.click();a.remove();
  msg.innerHTML=`إذا لم يبدأ التنزيل تلقائيًا، اضغطي على الصورة مطوّلًا أو بالزر الأيمن واختاري «حفظ الصورة»:<br><img src="${url}" alt="شهادة ${esc(name)}" style="margin-top:8px;max-height:200px;border-radius:10px;border:1px solid var(--line)">`;
 }
 
@@ -1046,6 +1048,8 @@ $("#fsBtn").onclick=toggleFs;
 /* ---------- responses to OneDrive (Microsoft Forms prefilled link) ---------- */
 // ضعي هنا رابط النموذج المعبّأ مسبقًا من Microsoft Forms (بالقيم: NAME و LESSON و STARS و RESULTS و ANSWERS)
 const FORM_URL="";
+// رابط «طلب ملفات» لمجلد «ثالث متوسط» في OneDrive المدرسة
+const UPLOAD_URL="";
 function logResult(el){
  const t=(($("h2",el)||{}).textContent||"نشاط").trim();
  const qq=$("#qq",el),sc=$(".score",el);
