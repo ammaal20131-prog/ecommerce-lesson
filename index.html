@@ -433,8 +433,6 @@ canvas.fx{position:fixed;inset:0;pointer-events:none;z-index:60}
     <div class="tools">
       <button class="tbtn mini-timer" id="miniTimer" hidden>00:00</button>
       <button class="tbtn" data-tool="timer" title="المؤقت"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg><span class="lbl">المؤقت</span></button>
-      <button class="tbtn" data-tool="pick" title="اختيار طالبة"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><span class="lbl">اختيار طالبة</span></button>
-      <button class="tbtn" data-tool="groups" title="نقاط المجموعات"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg><span class="lbl">النقاط</span></button>
       <button class="tbtn" id="tocBtn" title="أقسام الدرس"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="lbl">الأقسام</span></button>
       <button class="tbtn" id="fsBtn" title="ملء الشاشة"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
     </div>
@@ -520,37 +518,36 @@ const LW2="https://www.liveworksheets.com/c?a=c&sr=n&im=n&l=di&i=sunuztt&r=zk&f=
 const LESSONS={
 l1:{name:"مقدمة في التجارة الإلكترونية (١)",short:"الدرس الأول (١)",slides:[
  {k:"quote",sec:"البداية",label:"إضاءة",text:"عاملوا الناس بما يُظهرون لكم، والله يتولّى ما في صدورهم."},
- {k:"rules",sec:"البداية"},
  {k:"divider",sec:"نشاط قبلي",title:"نشاط قبلي (١)",sub:"تهيئة",ring:"؟"},
- {k:"flipgrid",sec:"نشاط قبلي",title:"للعقول المفكّرة",meta:{s:"المناقشة والحوار، قراءة الصور",sk:"العصف الذهني، الاستنتاج",t:"فردي",m:3},
+ {k:"flipgrid",sec:"نشاط قبلي",title:"للعقول المفكّرة",meta:{s:"قراءة الصور",sk:"العصف الذهني، الاستنتاج",t:"فردي",m:3},
   q:"من خلال قراءة الصور التالية وحسب خبرتي، أسمّي كل صورة:",cols:4,
   cards:[{img:"salla",back:"سلة"},{img:"noon",back:"نون"},{img:"shein",back:"شي إن"},{img:"amazon",back:"أمازون"}],
-  reveal:[{q:"ما الرابط المشترك بين الصور السابقة؟",a:"جميعها <b>متاجر ومنصات للتجارة الإلكترونية</b> نشتري منها عبر الإنترنت."},{q:"اذكري تجربة لكِ مع أحدها (إيجابية أو سلبية).",a:"نستمع لتجارب الطالبات… استخدمي «اختيار طالبة» من الأعلى."}]},
+  reveal:[{q:"ما الرابط المشترك بين الصور السابقة؟",a:"جميعها <b>متاجر ومنصات للتجارة الإلكترونية</b> نشتري منها عبر الإنترنت."},{q:"اذكري تجربة لكِ مع أحدها (إيجابية أو سلبية).",a:"اكتبي تجربتك في سطرين، أو شاركيها مع معلمتك في الحصة."}]},
  {k:"title",sec:"عنوان الدرس",unit:"الوحدة الثالثة: التجارة الإلكترونية",lesson:"الدرس الأول",part:"مقدمة في التجارة الإلكترونية (١)"},
  {k:"goals",sec:"أهداف الدرس",outcomes:["ترتيب تعريف التجارة الإلكترونية","استنتاج الأنظمة التي تعتمد عليها التجارة الإلكترونية","المقارنة بين مزايا وعيوب التجارة الإلكترونية","المقارنة بين نماذج التجارة الإلكترونية"],elements:["التجارة الإلكترونية","الأنظمة التي تعتمد عليها التجارة الإلكترونية","نماذج التجارة الإلكترونية","الأسواق الإلكترونية"]},
- {k:"kwl",sec:"جدول التعلّم",id:"l1",meta:{s:"جدول التعلّم، المناقشة والحوار",sk:"الاستنتاج",t:"جماعي",m:2}},
+ {k:"kwl",sec:"جدول التعلّم",id:"l1",meta:{s:"جدول التعلّم",sk:"الاستنتاج",t:"فردي",m:2}},
  {k:"divider",sec:"التجارة الإلكترونية",title:"التجارة الإلكترونية",sub:"ماذا نعني بها؟",img:"shop"},
- {k:"wordorder",sec:"التجارة الإلكترونية",title:"سحابة الكلمات",meta:{s:"سحابة الكلمات، التعلم التعاوني",sk:"الترتيب، التعاون",t:"جماعي",m:2},
-  q:"بالتعاون مع مجموعتي أرتّب الكلمات التالية للوصول إلى تعريف <b>التجارة الإلكترونية</b>:",
+ {k:"wordorder",sec:"التجارة الإلكترونية",title:"سحابة الكلمات",meta:{s:"سحابة الكلمات",sk:"الترتيب، الدقة",t:"فردي",m:2},
+  q:"أرتّب الكلمات التالية للوصول إلى تعريف <b>التجارة الإلكترونية</b>:",
   words:["كافة","أشكال","التعاملات","التجارية","التي","تتم","عبر","الإنترنت","وتستخدم","الشبكة","الإلكترونية","العالمية","بشكل","كلي","أو جزئي","خلال","التعاملات","التجارية"],
   def:"<b>التجارة الإلكترونية:</b> كافة أشكال التعاملات التجارية التي تتم عبر الإنترنت وتستخدم الشبكة الإلكترونية العالمية بشكل كلي أو جزئي خلال التعاملات التجارية."},
  {k:"flipgrid",sec:"التجارة الإلكترونية",title:"من أشهر الأمثلة على التجارة الإلكترونية",q:"اقلبي البطاقة لمعرفة المثال:",cols:2,tall:true,
   cards:[{img:"shop",back:"التسوق عبر الإنترنت",small:"بيع وشراء المنتجات"},{img:"money",back:"تحويل الأموال والبيانات",small:"عبر التطبيقات والخدمات المصرفية"}]},
  {k:"divider",sec:"الأنظمة",title:"الأنظمة التي تعتمد عليها التجارة الإلكترونية",img:"brain"},
- {k:"tiles",sec:"الأنظمة",title:"استنتجي الأنظمة",meta:{s:"قراءة الصور، البطاقات التفاعلية",sk:"الاستنتاج، العصف الذهني",t:"جماعي",m:3},
-  q:"بالتعاون مع مجموعتي أستنتج الأنظمة التي تعتمد عليها التجارة الإلكترونية. اضغطي على البطاقة بعد إجابة المجموعة:",
+ {k:"tiles",sec:"الأنظمة",title:"استنتجي الأنظمة",meta:{s:"قراءة الصور، البطاقات التفاعلية",sk:"الاستنتاج، العصف الذهني",t:"فردي",m:3},
+  q:"أستنتج الأنظمة التي تعتمد عليها التجارة الإلكترونية. فكّري أولًا، ثم اضغطي على البطاقة لتتحققي:",
   items:[{i:"erp",t:"أنظمة إدارة موارد الشركة"},{i:"chat",t:"أنظمة تبادل الرسائل الفورية"},{i:"mail",t:"البريد الإلكتروني"},{i:"cart",t:"أنظمة التسوق عبر الإنترنت"},{i:"truck",t:"خدمات تتبع توصيل المنتجات"},{i:"bank",t:"الخدمات المصرفية عبر الإنترنت"}]},
- {k:"balance",sec:"مزايا وعيوب",title:"الميزان",meta:{s:"الميزان، التعلم التعاوني",sk:"اتخاذ القرار، العصف الذهني، المقارنة",t:"جماعي",m:5},
-  q:"بالتعاون مع مجموعتي أستنتج أبرز <b>مزايا وعيوب</b> التجارة الإلكترونية، وأضيفها إلى كفّة الميزان:",
-  after:"١- الكفّة التي ثقلت أكثر (عناصرها أكثر): نذكر اسمها.<br>٢- الكفّة التي خفّت (عناصرها أقل): نذكر اسمها ونقترح حلولًا."},
+ {k:"balance",sec:"مزايا وعيوب",title:"الميزان",meta:{s:"الميزان",sk:"اتخاذ القرار، العصف الذهني، المقارنة",t:"فردي",m:5},
+  q:"أستنتج أبرز <b>مزايا وعيوب</b> التجارة الإلكترونية، وأضيفها إلى كفّة الميزان:",
+  after:"١- الكفّة التي ثقلت أكثر (عناصرها أكثر): اذكري اسمها.<br>٢- الكفّة التي خفّت (عناصرها أقل): اذكري اسمها واقترحي حلولًا."},
  {k:"proscons",sec:"مزايا وعيوب",title:"مزايا وعيوب التجارة الإلكترونية"},
  {k:"video",sec:"قيمة وطنية",label:"قيمة وطنية",title:"امتلاك متجر إلكتروني احترافي بأقل التكاليف",src:"media/l1-vision.mp4",logos:["vision","salla"]},
- {k:"divider",sec:"نشاط مرحلي (١)",title:"نشاط مرحلي (١)",sub:"أجيبوا! (من طالبة إلى مجموعة)",ring:"١"},
- {k:"examples",sec:"نشاط مرحلي (١)",title:"السؤال الأول",mode:"أجيبوا! · محك النجاح: السرعة، التعاون",meta:{s:"التعلم التعاوني، الدقيقة الواحدة",sk:"الفهم (إعطاء مثال)، التعاون",t:"جماعي",m:1},
-  q:"بالتعاون مع مجموعتي أمثّل لـ <b>التجارة الإلكترونية</b>:",cats:["التسوق عبر الإنترنت (بيع وشراء المنتجات)","تحويل الأموال والبيانات"],
+ {k:"divider",sec:"نشاط مرحلي (١)",title:"نشاط مرحلي (١)",sub:"أجيبي! تحدٍّ فردي",ring:"١"},
+ {k:"examples",sec:"نشاط مرحلي (١)",title:"السؤال الأول",mode:"أجيبي! · محك النجاح: السرعة، الدقة",meta:{s:"الدقيقة الواحدة",sk:"الفهم (إعطاء مثال)، الدقة",t:"فردي",m:1},
+  q:"أمثّل لـ <b>التجارة الإلكترونية</b>:",cats:["التسوق عبر الإنترنت (بيع وشراء المنتجات)","تحويل الأموال والبيانات"],
   seed:[["شراء عباية من متجر إلكتروني"],["تحويل مبلغ عبر تطبيق البنك"]]},
- {k:"sort",sec:"نشاط مرحلي (١)",title:"السؤال الثاني",mode:"أجيبوا! · محك النجاح: السرعة، التعاون",meta:{s:"التعلم التعاوني",sk:"التصنيف، التعاون",t:"جماعي",m:3},
-  q:"بالتعاون مع مجموعتي أصنّف العبارات التالية إلى <b>مزايا</b> أو <b>عيوب</b>:",balance:true,link:{href:"https://wordwall.net/ar/resource/61025557",t:"النشاط الأصلي على Wordwall"},
+ {k:"sort",sec:"نشاط مرحلي (١)",title:"السؤال الثاني",mode:"أجيبي! · محك النجاح: السرعة، الدقة",meta:{s:"التعلم الذاتي",sk:"التصنيف، الدقة",t:"فردي",m:3},
+  q:"أصنّف العبارات التالية إلى <b>مزايا</b> أو <b>عيوب</b>:",balance:true,link:{href:"https://wordwall.net/ar/resource/61025557",t:"النشاط الأصلي على Wordwall"},
   cats:[{id:"p",t:"المزايا",cls:"pro"},{id:"c",t:"العيوب",cls:"con"}],
   items:[["وصف مفصل للمنتج وآراء العملاء","p"],["دفع ثمن مشتريات كثيرة في وقت واحد","p"],["أخطاء أقل بسبب الأتمتة","p"],["الوصول لعملاء خارج المجتمع المحلي","p"],["تكاليف صيانة أقل","p"],["لا يمكن معاينة المنتج قبل الشراء","c"],["انتظار شحن المنتج","c"],["رسوم شحن وضرائب إضافية","c"],["التخوّف من مشاركة البيانات الشخصية","c"]]},
  {k:"divider",sec:"نماذج التجارة الإلكترونية",title:"نماذج التجارة الإلكترونية",sub:"تُصنَّف بناءً على نوع المشاركين في عمليات التبادل التجاري",img:"b2b"},
@@ -569,13 +566,13 @@ l1:{name:"مقدمة في التجارة الإلكترونية (١)",short:"ا�
   cards:[{ph:"١",front:"الأسواق المستقلة",back:"الأسواق المستقلة",small:"منصات عامة تملكها مؤسسات ربحية مستقلة، تتيح للبائعين والمشترين ممارسة التبادل التجاري. مثل: eBay و Alibaba"},
          {ph:"٢",front:"الأسواق الموجَّهة للمشتري",back:"الموجَّهة للمشتري",small:"منصات متخصصة يستخدمها الموردون لعرض البضائع والخدمات لفئة محددة من المشترين. مثل: جنرال إلكتريك"},
          {ph:"٣",front:"الأسواق الموجَّهة للمورّد",back:"الموجَّهة للمورّد",small:"تديرها مجموعة من الموردين، وتستخدمها شركات التصنيع خاصة الإلكترونيات لترويج منتجاتها. مثل: سيسكو وإنتل"}]},
- {k:"divider",sec:"نشاط مرحلي (٢)",title:"نشاط مرحلي (٢)",sub:"نحن لها! (من مجموعة إلى مجموعة)",ring:"٢"},
- {k:"sort",sec:"نشاط مرحلي (٢)",title:"حرف T: قارني بين النموذجين",mode:"نحن لها! · محك النجاح: السرعة، التعاون",meta:{s:"التعلم التعاوني، حرف T",sk:"التعاون، المقارنة والتفكير البصري",t:"جماعي",m:1},
-  q:"بالتعاون مع مجموعتي أقارن بين <b>B2B</b> و<b>C2C</b> بوضع كل عبارة في عمودها:",
+ {k:"divider",sec:"نشاط مرحلي (٢)",title:"نشاط مرحلي (٢)",sub:"أنا لها! تحدٍّ فردي",ring:"٢"},
+ {k:"sort",sec:"نشاط مرحلي (٢)",title:"حرف T: قارني بين النموذجين",mode:"أنا لها! · محك النجاح: السرعة، الدقة",meta:{s:"حرف T",sk:"المقارنة والتفكير البصري",t:"فردي",m:1},
+  q:"أقارن بين <b>B2B</b> و<b>C2C</b> بوضع كل عبارة في عمودها:",
   cats:[{id:"b",t:"شركة إلى شركة B2B"},{id:"c",t:"مستهلك إلى مستهلك C2C"}],
   items:[["تبادل المنتجات والخدمات والمعلومات بين الشركات","b"],["تبادل أدلة المنتجات بين الشركات","b"],["مثال: خدمة الوفاء من أمازون","b"],["يتداول المستهلكون المنتجات مع بعضهم","c"],["تتم غالبًا عبر طرف ثالث كمنصة إلكترونية","c"],["مثال: موقع المزادات eBay","c"]]},
  {k:"video",sec:"قيمة دينية",label:"قيمة دينية",title:"التجارة بين الغش والأمانة",src:"media/l1-amana.mp4"},
- {k:"quiz",sec:"نشاط ختامي",title:"ختامها مسك",mode:"من المعلمة إلى الطالبة · محك النجاح: السرعة، التعاون، الهدوء",meta:{s:"التعلم التعاوني",sk:"التذكر، المزاوجة",t:"جماعي",m:3},link:{href:LW1,t:"ورقة العمل التفاعلية (Liveworksheets)"},
+ {k:"quiz",sec:"نشاط ختامي",title:"ختامها مسك",mode:"محك النجاح: السرعة، الدقة، التركيز",meta:{s:"التعلم الذاتي",sk:"التذكر، المزاوجة",t:"فردي",m:3},link:{href:LW1,t:"ورقة العمل التفاعلية (Liveworksheets)"},
   qs:[["التجارة الإلكترونية تستخدم الشبكة العالمية:",["بشكل كلي أو جزئي","بشكل كلي فقط","لا تستخدمها"],0],
       ["خدمة الوفاء من أمازون مثال على نموذج:",["B2C","B2B","C2C"],1],
       ["موقع المزادات eBay مثال على نموذج:",["C2C","B2B","B2C"],0],
@@ -586,44 +583,43 @@ l1:{name:"مقدمة في التجارة الإلكترونية (١)",short:"ا�
 ]},
 l2:{name:"مقدمة في التجارة الإلكترونية (٢)",short:"الدرس الأول (٢)",slides:[
  {k:"quote",sec:"البداية",label:"إضاءة",text:"ثلاث تثبت لك الود في صدر أخيك: أن تبدأه بالسلام، وتوسّع له في المجلس، وتدعوه بأحب الأسماء إليه."},
- {k:"rules",sec:"البداية"},
  {k:"divider",sec:"مراجعة",title:"مراجعة الدرس السابق",sub:"شريط الذكريات",ring:"↺"},
- {k:"tf",sec:"مراجعة",title:"للعقول المفكّرة",meta:{s:"التعلم التعاوني، شريط الذكريات",sk:"التذكر، التصنيف",t:"جماعي",m:2},link:{href:"https://wordwall.net/ar/resource/60675272",t:"النشاط الأصلي على Wordwall"},
+ {k:"tf",sec:"مراجعة",title:"للعقول المفكّرة",meta:{s:"شريط الذكريات",sk:"التذكر، التصنيف",t:"فردي",m:2},link:{href:"https://wordwall.net/ar/resource/60675272",t:"النشاط الأصلي على Wordwall"},
   q:"أجيبي بـ «صح» أو «خطأ» بناءً على ما تناولناه في الدرس الماضي:",
   items:[["التجارة الإلكترونية تتم عبر الإنترنت بشكل كلي أو جزئي.",true,""],["eBay مثال على نموذج شركة إلى شركة B2B.",false,"eBay مثال على نموذج مستهلك إلى مستهلك C2C."],["من مزايا التجارة الإلكترونية معاينة المنتج على الواقع قبل الشراء.",false,"عدم القدرة على المعاينة من عيوبها."],["Alibaba مثال على الأسواق المستقلة.",true,""],["البريد الإلكتروني من الأنظمة التي تعتمد عليها التجارة الإلكترونية.",true,""]]},
  {k:"title",sec:"عنوان الدرس",unit:"الوحدة الثالثة: التجارة الإلكترونية",lesson:"الدرس الأول",part:"مقدمة في التجارة الإلكترونية (٢)"},
  {k:"goals",sec:"أهداف الدرس",outcomes:["ترتيب تعريف السلع الافتراضية","التمثيل للسلع الافتراضية","طريقة العثور على المنتجات"],elements:["السلع الافتراضية","التسوق عبر الإنترنت","الدخول للمتجر الإلكتروني","تطبيق عملي"]},
- {k:"kwl",sec:"جدول التعلّم",id:"l2",meta:{s:"جدول التعلّم، المناقشة والحوار",sk:"الاستنتاج",t:"جماعي",m:2}},
+ {k:"kwl",sec:"جدول التعلّم",id:"l2",meta:{s:"جدول التعلّم",sk:"الاستنتاج",t:"فردي",m:2}},
  {k:"divider",sec:"السلع الافتراضية",title:"السلع الافتراضية",img:"games"},
- {k:"wordorder",sec:"السلع الافتراضية",title:"سحابة الكلمات",meta:{s:"سحابة الكلمات، التعلم التعاوني",sk:"الترتيب، التعاون",t:"جماعي",m:1},
-  q:"بالتعاون مع مجموعتي أرتّب الكلمات التالية للوصول إلى تعريف <b>السلعة الافتراضية</b>:",
+ {k:"wordorder",sec:"السلع الافتراضية",title:"سحابة الكلمات",meta:{s:"سحابة الكلمات",sk:"الترتيب، الدقة",t:"فردي",m:1},
+  q:"أرتّب الكلمات التالية للوصول إلى تعريف <b>السلعة الافتراضية</b>:",
   words:["أصل","غير","ملموس","يتم","تداوله","في","اقتصاد","افتراضي"],
   def:"<b>السلعة الافتراضية:</b> أصل غير ملموس يتم تداوله في اقتصاد افتراضي، ومثال ذلك: الألعاب الإلكترونية، وورش التطوير المهني، وبرمجيات الإنترنت."},
  {k:"flipgrid",sec:"السلع الافتراضية",title:"أمثلة على السلع الافتراضية",q:"السلعة الافتراضية أصل غير ملموس يتم تداوله في اقتصاد افتراضي. اقلبي البطاقات:",cols:3,tall:true,
   cards:[{img:"games",back:"الألعاب الإلكترونية"},{img:"workshop",back:"ورش التطوير المهني"},{img:"software",back:"برمجيات الإنترنت"}]},
- {k:"think",sec:"السلع الافتراضية",title:"سؤال للمفكّرات",q:"باعتقادك، كيف يتم تحديد قيمة السلع الافتراضية؟",a:"السلع الافتراضية بحكم تعريفها <b>غير مادية</b>، ويتم تحديد قيمتها بشكل حصري من خلال <b>ما يرغب المستخدمون في دفعه مقابلها</b>."},
+ {k:"think",sec:"السلع الافتراضية",title:"سؤال للتفكير",q:"باعتقادك، كيف يتم تحديد قيمة السلع الافتراضية؟",a:"السلع الافتراضية بحكم تعريفها <b>غير مادية</b>، ويتم تحديد قيمتها بشكل حصري من خلال <b>ما يرغب المستخدمون في دفعه مقابلها</b>."},
  {k:"video",sec:"قيمة وطنية",label:"قيمة وطنية",title:"من الأمثلة على السوق الافتراضي: متجر إحسان الخيري الإلكتروني",src:"media/l2-ehsan.mp4",logos:["vision","ehsan"]},
  {k:"divider",sec:"التسوق عبر الإنترنت",title:"التسوق عبر الإنترنت",img:"phone"},
  {k:"flow",sec:"التسوق عبر الإنترنت",title:"التسوق عبر الإنترنت",lead:"شكل من أشكال التجارة الإلكترونية يصف نشاطًا خاصًا بالمستهلكين الذين يشترون منتجات أو خدمات <b>مباشرة من بائع على الإنترنت</b> باستخدام المواقع والتطبيقات الإلكترونية.",
   steps:[["globe","يتصل المستهلك بالإنترنت"],["store","يتصفح موقع البائع"],["tap","يختار منتجًا"],["card","يدفع ثمنه"]],
   pay:["الدفع عند وصول المنتج","بطاقة الائتمان","بطاقة الخصم (مدى)","التحويلات المصرفية"]},
  {k:"findways",sec:"التسوق عبر الإنترنت",title:"كيف يعثر المستهلك على المنتج؟"},
- {k:"divider",sec:"نشاط مرحلي (١)",title:"نشاط مرحلي (١)",sub:"أجيبوا! (من طالبة إلى مجموعة)",ring:"١"},
- {k:"sort",sec:"نشاط مرحلي (١)",title:"السؤال الأول",mode:"أجيبوا! · محك النجاح: السرعة، التعاون",meta:{s:"التعلم التعاوني",sk:"الفهم (إعطاء مثال)، التعاون",t:"جماعي",m:2},
-  q:"بالتعاون مع مجموعتي أميّز <b>السلع الافتراضية</b> من السلع المادية:",
+ {k:"divider",sec:"نشاط مرحلي (١)",title:"نشاط مرحلي (١)",sub:"أجيبي! تحدٍّ فردي",ring:"١"},
+ {k:"sort",sec:"نشاط مرحلي (١)",title:"السؤال الأول",mode:"أجيبي! · محك النجاح: السرعة، الدقة",meta:{s:"التعلم الذاتي",sk:"الفهم (إعطاء مثال)، الدقة",t:"فردي",m:2},
+  q:"أميّز <b>السلع الافتراضية</b> من السلع المادية:",
   cats:[{id:"v",t:"سلعة افتراضية"},{id:"m",t:"سلعة مادية ملموسة"}],
   items:[["لعبة إلكترونية","v"],["ورشة تطوير مهني عن بُعد","v"],["برنامج يُحمَّل من الإنترنت","v"],["عملات داخل لعبة إلكترونية","v"],["حذاء رياضي","m"],["هاتف محمول","m"],["كتاب مطبوع","m"],["حقيبة مدرسية","m"]]},
- {k:"think",sec:"نشاط مرحلي (١)",title:"السؤال الثاني",mode:"أجيبوا! · محك النجاح: السرعة، التعاون",meta:{s:"التعلم التعاوني",sk:"التذكر، التعاون",t:"جماعي",m:2},q:"كيف يمكن للمستهلكين العثور على المنتج الذي يثير اهتمامهم؟",
+ {k:"think",sec:"نشاط مرحلي (١)",title:"السؤال الثاني",mode:"أجيبي! · محك النجاح: السرعة، الدقة",meta:{s:"التعلم الذاتي",sk:"التذكر، الدقة",t:"فردي",m:2},q:"كيف يمكن للمستهلكين العثور على المنتج الذي يثير اهتمامهم؟",
   a:"من خلال: <b>زيارة الموقع الإلكتروني الخاص ببائع التجزئة مباشرة</b>، أو <b>البحث بين البائعين المختلفين</b> باستخدام محرك بحث للتسوق."},
  {k:"divider",sec:"الدخول للمتجر الإلكتروني",title:"الدخول للمتجر الإلكتروني",sub:"باستخدام LocalWP",img:"cart"},
  {k:"localwp",sec:"الدخول للمتجر الإلكتروني",title:"قبل الشروع في الشراء"},
  {k:"sim",sec:"الدخول للمتجر الإلكتروني",title:"استيراد متجر إلكتروني والوصول إليه باستخدام LocalWP",steps:IMPORT_STEPS},
  {k:"sim",sec:"الدخول للمتجر الإلكتروني",title:"اختيار المنتج وإضافته إلى عربة التسوق",steps:SHOP_STEPS},
  {k:"video",sec:"إثراء",label:"إثراء (أضيفي إلى معلوماتي)",title:"قبل تفتح متجر إلكتروني.. خلّيك واعي",src:"media/l2-store-aware.mp4"},
- {k:"divider",sec:"نشاط مرحلي (٢)",title:"نشاط مرحلي (٢)",sub:"نحن لها! (من مجموعة إلى مجموعة)",ring:"٢"},
- {k:"order",sec:"نشاط مرحلي (٢)",title:"رتّبي خطوات استيراد المتجر",mode:"نحن لها! · محك النجاح: السرعة، التعاون",meta:{s:"التعلم التعاوني",sk:"التعاون، التطبيق",t:"جماعي",m:5},
-  q:"بالتعاون مع مجموعتي أرتّب الخطوات ثم أطبّقها على جهازي:",steps:["البحث عن برنامج LocalWP وفتحه","الضغط على «إنشاء موقع جديد» (+)","اختيار «ملف مضغوط موجود»","اختيار الملف المضغوط ثم «فتح»","تغيير اسم المتجر ثم «متابعة»","الضغط على «استيراد الموقع»","الضغط على «فتح الموقع»","الذهاب للتسوق وإضافة منتج إلى السلة"]},
- {k:"quiz",sec:"نشاط ختامي",title:"ختامها مسك",mode:"من المعلمة إلى الطالبة · محك النجاح: السرعة، التعاون، الهدوء",meta:{s:"التعلم التعاوني",sk:"التذكر، المزاوجة",t:"جماعي",m:3},link:{href:LW2,t:"ورقة العمل التفاعلية (Liveworksheets)"},
+ {k:"divider",sec:"نشاط مرحلي (٢)",title:"نشاط مرحلي (٢)",sub:"أنا لها! تحدٍّ فردي",ring:"٢"},
+ {k:"order",sec:"نشاط مرحلي (٢)",title:"رتّبي خطوات استيراد المتجر",mode:"أنا لها! · محك النجاح: السرعة، الدقة",meta:{s:"التعلم الذاتي",sk:"التطبيق",t:"فردي",m:5},
+  q:"أرتّب الخطوات ثم أطبّقها على جهازي:",steps:["البحث عن برنامج LocalWP وفتحه","الضغط على «إنشاء موقع جديد» (+)","اختيار «ملف مضغوط موجود»","اختيار الملف المضغوط ثم «فتح»","تغيير اسم المتجر ثم «متابعة»","الضغط على «استيراد الموقع»","الضغط على «فتح الموقع»","الذهاب للتسوق وإضافة منتج إلى السلة"]},
+ {k:"quiz",sec:"نشاط ختامي",title:"ختامها مسك",mode:"محك النجاح: السرعة، الدقة، التركيز",meta:{s:"التعلم الذاتي",sk:"التذكر، المزاوجة",t:"فردي",m:3},link:{href:LW2,t:"ورقة العمل التفاعلية (Liveworksheets)"},
   qs:[["السلعة الافتراضية هي:",["أصل غير ملموس يتم تداوله في اقتصاد افتراضي","سلعة تُشحن إلى المنزل","منتج يُباع في متجر تقليدي فقط"],0],
       ["تُحدَّد قيمة السلع الافتراضية من خلال:",["تكلفة المواد الخام","ما يرغب المستخدمون في دفعه مقابلها","وزنها وحجمها"],1],
       ["أيّ مما يلي ليس سلعة افتراضية؟",["لعبة إلكترونية","برمجيات الإنترنت","كتاب ورقي مطبوع"],2],
@@ -666,7 +662,7 @@ goals(s,el){
 },
 kwl(s,el){
  const v=store.get("kwl-"+s.id,{k:"",w:"",l:"",v:""});
- el.innerHTML=`${head({sec:"جدول التعلّم",title:"جدول التعلّم",meta:s.meta})}<div class="q">بالتعاون مع مجموعتي أملأ جدول التعلّم التالي (اكتبي إجابات الطالبات مباشرة):</div>
+ el.innerHTML=`${head({sec:"جدول التعلّم",title:"جدول التعلّم",meta:s.meta})}<div class="q">أملأ جدول التعلّم التالي:</div>
  <div class="kwl"><div><label for="kk-${s.id}"><span class="k">ماذا أعرف؟</span></label><textarea id="kk-${s.id}" data-f="k" placeholder="ما نعرفه مسبقًا عن الموضوع…">${esc(v.k)}</textarea></div>
  <div><label for="kw-${s.id}"><span class="w2">ماذا أريد أن أتعلّم؟</span></label><textarea id="kw-${s.id}" data-f="w" placeholder="أسئلتنا قبل الدرس…">${esc(v.w)}</textarea></div>
  <div><label for="kl-${s.id}"><span class="l2">ماذا تعلّمت؟</span></label><textarea id="kl-${s.id}" data-f="l" placeholder="نعود إليه في نهاية الحصة…">${esc(v.l)}</textarea></div></div>
@@ -688,7 +684,7 @@ wordorder(s,el){
  build();
  el.querySelector('[data-a=reset]').onclick=build;
  el.querySelector('[data-a=check]').onclick=()=>{const got=$$(".w",line).map(b=>b.textContent).join(" ");
-  if(got===s.words.join(" ")){line.className="line good";fb.className="fb g";fb.textContent="أحسنتنّ! ترتيب صحيح.";burst();reveal(el);done(el)}
+  if(got===s.words.join(" ")){line.className="line good";fb.className="fb g";fb.textContent="أحسنتِ! ترتيب صحيح.";burst();reveal(el);done(el)}
   else{line.className="line";void line.offsetWidth;line.classList.add("bad");fb.className="fb b";fb.textContent=bank.children.length?"أكملي ترتيب جميع الكلمات.":"ليس بعد… راجعي الترتيب."}};
  el.querySelector('[data-a=show]').onclick=()=>reveal(el);
  return 1;
@@ -727,7 +723,7 @@ video(s,el){
 },
 examples(s,el){
  const exk="ex-"+cur+idx;const data=store.get(exk,s.seed);
- el.innerHTML=`${head(s)}<div class="q">${s.q}</div><div class="buckets">${s.cats.map((c,i)=>`<div class="bucket"><h3>${esc(c)}</h3><div class="addrow"><input id="ex${i}" placeholder="اكتبي مثالًا من إجابات المجموعة…" aria-label="مثال"><button class="btn v" data-i="${i}">إضافة</button></div><div class="pool" style="border:0;padding:0;background:none"></div></div>`).join("")}</div>`;
+ el.innerHTML=`${head(s)}<div class="q">${s.q}</div><div class="buckets">${s.cats.map((c,i)=>`<div class="bucket"><h3>${esc(c)}</h3><div class="addrow"><input id="ex${i}" placeholder="اكتبي مثالًا من عندك…" aria-label="مثال"><button class="btn v" data-i="${i}">إضافة</button></div><div class="pool" style="border:0;padding:0;background:none"></div></div>`).join("")}</div>`;
  const draw=()=>$$(".bucket",el).forEach((b,i)=>{$(".pool",b).innerHTML=data[i].map((t,j)=>`<button class="card good" data-i="${i}" data-j="${j}" title="اضغطي للحذف">${esc(t)}</button>`).join("");
   $$(".card",b).forEach(c=>c.onclick=()=>{data[i].splice(+c.dataset.j,1);store.set(exk,data);draw()})});
  const add=i=>{const inp=$("#ex"+i,el),v=inp.value.trim();if(!v)return;data[i].push(v);inp.value="";store.set(exk,data);draw()};
@@ -766,7 +762,7 @@ quiz(s,el){
  el.innerHTML=`${head(s)}<div class="qz"><div class="qhead"><div class="dots">${s.qs.map(()=>"<i></i>").join("")}</div><span class="score"></span></div><div class="q" id="qq"></div><div class="opts"></div><div class="row"><span class="fb"></span><button class="btn v" data-a="next" hidden>السؤال التالي</button><button class="btn" data-a="again" hidden>${ic("redo")} إعادة الاختبار</button>${linkBtn(s.link)}</div></div>`;
  const opts=$(".opts",el),fb=$(".fb",el),nx=$('[data-a=next]',el),ag=$('[data-a=again]',el),dots=$$(".dots i",el);
  const show=()=>{dots.forEach((d,j)=>{d.className=res[j]===true?"g":res[j]===false?"b":j===i?"c":""});
-  if(i>=s.qs.length){const ok=res.filter(Boolean).length;$("#qq",el).innerHTML=`النتيجة: <b>${ar(ok)} من ${ar(s.qs.length)}</b>`;opts.innerHTML="";fb.className="fb g";fb.textContent=ok===s.qs.length?"ختامها مسك! إجابات كاملة.":"أحسنتنّ، راجعن الأسئلة التي أخطأتنّ فيها.";nx.hidden=true;ag.hidden=false;done(el);if(ok>=s.qs.length-1)burst();return}
+  if(i>=s.qs.length){const ok=res.filter(Boolean).length;$("#qq",el).innerHTML=`النتيجة: <b>${ar(ok)} من ${ar(s.qs.length)}</b>`;opts.innerHTML="";fb.className="fb g";fb.textContent=ok===s.qs.length?"ختامها مسك! إجابات كاملة.":"أحسنتِ، راجعي الأسئلة التي أخطأتِ فيها.";nx.hidden=true;ag.hidden=false;done(el);if(ok>=s.qs.length-1)burst();return}
   const [q,o,a]=s.qs[i];$("#qq",el).textContent=`${ar(i+1)}. ${q}`;fb.textContent="";nx.hidden=true;ag.hidden=true;
   opts.innerHTML=o.map((x,j)=>`<button class="opt" data-j="${j}">${esc(x)}</button>`).join("");
   $$(".opt",opts).forEach(b=>b.onclick=()=>{if(res[i]!==undefined)return;const j=+b.dataset.j;res[i]=j===a;b.classList.add(j===a?"good":"bad");opts.children[a].classList.add("good");
@@ -815,12 +811,12 @@ order(s,el){
  const reset=()=>{do{ord=shuffle(s.steps.map((_,k)=>k))}while(ord.every((k,j)=>k===j));draw()};
  $('[data-a=reset]',el).onclick=reset;
  $('[data-a=check]',el).onclick=()=>{let ok=0;$$(".oitem",list).forEach((r,j)=>{const g=ord[j]===j;if(g)ok++;r.classList.toggle("good",g);r.classList.toggle("bad",!g)});
-  if(ok===ord.length){fb.className="fb g";fb.textContent="ترتيب صحيح! طبّقن الخطوات الآن على أجهزتكن.";burst();done(el)}else{fb.className="fb b";fb.textContent=`${ar(ok)} من ${ar(ord.length)} في مكانها الصحيح.`}};
+  if(ok===ord.length){fb.className="fb g";fb.textContent="ترتيب صحيح! طبّقي الخطوات الآن على جهازك.";burst();done(el)}else{fb.className="fb b";fb.textContent=`${ar(ok)} من ${ar(ord.length)} في مكانها الصحيح.`}};
  reset();
 },
 closing(s,el){
- el.innerHTML=`<div class="eyebrow"><i></i>الختام</div><div class="close3"><div class="box" data-s="1"><h3>الواجب</h3><p>توجّهوا للمنصة لحل الواجب، لأنكم أكثر جدية والتزام.</p></div>
- <div class="box" data-s="2"><h3>النهاية</h3><p>الاستماع الجيد سلوك حضاري، وهو أحد عناصر عملية اتصالك الصحيح مع من حولك.</p><p class="muted" style="font-weight:500">أشكر لكنّ حسن الاستماع وجمال المشاركة</p></div>
+ el.innerHTML=`<div class="eyebrow"><i></i>الختام</div><div class="close3"><div class="box" data-s="1"><h3>الواجب</h3><p>توجّهي للمنصة لحل الواجب، فأنتِ أهلٌ للجدية والالتزام.</p></div>
+ <div class="box" data-s="2"><h3>النهاية</h3><p>الاستماع الجيد سلوك حضاري، وهو أحد عناصر عملية اتصالك الصحيح مع من حولك.</p><p class="muted" style="font-weight:500">أشكر لكِ حسن الاستماع وجمال المشاركة</p></div>
  <div class="box" data-s="3" style="background:var(--violet);color:var(--violet-ink);border-color:var(--violet)"><h3 style="color:var(--lime)">كفّارة المجلس</h3><p>سبحانك اللهم وبحمدك، أشهد أن لا إله إلا أنت، أستغفرك وأتوب إليك.</p></div></div>
  <div class="row"><button class="btn" data-a="home">العودة إلى صفحة الدروس</button></div>`;
  $('[data-a=home]',el).onclick=()=>go(null);return 3;
@@ -860,7 +856,7 @@ function renderLesson(k){
   $$("[data-s]",el).forEach(e=>{const isAns=e.classList.contains("answer");e.removeAttribute("data-s");
    if(isAns){e.hidden=true;if(!$("[data-a=show]",el)){const b=document.createElement("button");b.className="btn v showans";b.innerHTML=ic("eye")+" إظهار الإجابة";b.onclick=()=>{e.hidden=false;b.remove()};e.before(b)}}});
   $$("[data-timer]",el).forEach(b=>b.onclick=()=>startTimer(+b.dataset.timer*60));
-  if(counted&&!AUTO.has(s.k)){const b=document.createElement("button");b.className="btn finish";b.style.alignSelf="flex-start";b.innerHTML=ic("check")+" أنهينا هذا النشاط";b.onclick=()=>{mark(el);burst()};el.appendChild(b)}
+  if(counted&&!AUTO.has(s.k)){const b=document.createElement("button");b.className="btn finish";b.style.alignSelf="flex-start";b.innerHTML=ic("check")+" أنهيتُ هذا النشاط";b.onclick=()=>{mark(el);burst()};el.appendChild(b)}
  });
  const other=k==="l1"?"l2":"l1";
  site.insertAdjacentHTML("beforeend",`<div class="pager"><button class="btn" data-go2="home">الصفحة الرئيسية</button><button class="btn v" data-go2="${other}">انتقلي إلى ${esc(LESSONS[other].name)}</button></div>`);
@@ -879,7 +875,7 @@ function buildAdventure(k,site){
   const h0=document.getElementById(s.id);let n=h0;const nodes=[];while(n&&n!==pager&&!n.classList.contains("station")&&!(n!==h0&&n.classList.contains("sechead"))){nodes.push(n);n=n.nextElementSibling}
   site.insertBefore(box,pager);nodes.forEach(x=>box.appendChild(x));
   box.insertAdjacentHTML("afterbegin",`<div class="stbar"><button class="btn" data-back>${ic("map")} العودة إلى الخريطة</button><span class="chip mode">المحطة ${ar(i+1)} من ${ar(secs.length)}</span></div>`);
-  box.insertAdjacentHTML("beforeend",`<div class="stend"><div><b>أنهيتنّ هذه المحطة؟</b><div class="muted">اضغطي لجمع النجمة وفتح المحطة التالية على الخريطة.</div></div><button class="btn v big" data-finish>${ic("star")} اجمعي النجمة وتابعي المغامرة</button></div>`);
+  box.insertAdjacentHTML("beforeend",`<div class="stend"><div><b>أنهيتِ هذه المحطة؟</b><div class="muted">اضغطي لجمع النجمة وفتح المحطة التالية على الخريطة.</div></div><button class="btn v big" data-finish>${ic("star")} اجمعي النجمة وتابعي المغامرة</button></div>`);
   $("[data-back]",box).onclick=()=>showMap();
   $("[data-finish]",box).onclick=()=>finishStation(i);
   return box});
@@ -896,7 +892,7 @@ function drawMap(){
  const d=advDone(),N=secs.length,cur=[...Array(N).keys()].find(i=>!d.includes(i));const all=d.length>=N;
  const stars=d.length;
  $("#advStars")&&( $("#advStars").textContent=ar(stars));
- adv.map.innerHTML=`<div class="maphead"><div><div class="eyebrow"><i></i>خريطة المغامرة</div><h2 class="h2" style="margin-top:4px">رحلة المستكشفة في عالم التجارة الإلكترونية</h2><p class="muted" style="margin:4px 0 0">انطلقن من المحطة الأولى، أنجزن أنشطة كل محطة، واجمعن النجوم حتى تصلن إلى الكنز.</p></div>
+ adv.map.innerHTML=`<div class="maphead"><div><div class="eyebrow"><i></i>خريطة المغامرة</div><h2 class="h2" style="margin-top:4px">رحلة المستكشفة في عالم التجارة الإلكترونية</h2><p class="muted" style="margin:4px 0 0">انطلقي من المحطة الأولى، أنجزي أنشطة كل محطة، واجمعي النجوم حتى تصلي إلى الكنز.</p></div>
  <div class="starbox">${ic("star")}<b>${ar(stars)}</b><span>/ ${ar(N)}</span></div></div>
  ${nameBar()}
  <div class="trail">${secs.map((s,i)=>{const st=d.includes(i)?"done":(canOpen(i)?(i===cur?"cur":"open"):"lock");const off=WAVE[i%WAVE.length];
@@ -938,11 +934,11 @@ $("#toTop").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 $("#brandBtn").onclick=()=>go(null);
 function renderHome(){
  $("#lessonName").textContent="التجارة الإلكترونية";
- const card=(k,n,items)=>{const L=LESSONS[k];const d=store.get("done-"+k,[]).length;return `<div class="lcard"><div class="num">${n}</div><h3>${esc(L.name)}</h3><ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>${d?`<div class="muted" style="font-size:.88rem">أنجزتنّ ${ar(d)} من الأنشطة</div>`:""}<div class="row" style="margin-top:auto"><button class="go" data-l="${k}">ابدئي المغامرة</button></div></div>`};
+ const card=(k,n,items)=>{const L=LESSONS[k];const d=store.get("done-"+k,[]).length;return `<div class="lcard"><div class="num">${n}</div><h3>${esc(L.name)}</h3><ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>${d?`<div class="muted" style="font-size:.88rem">أنجزتِ ${ar(d)} من الأنشطة</div>`:""}<div class="row" style="margin-top:auto"><button class="go" data-l="${k}">ابدئي المغامرة</button></div></div>`};
  main.innerHTML=`<div class="home"><section class="hero"><div><span class="tag">الوحدة الثالثة · الدرس الأول</span><h1>مقدمة في التجارة الإلكترونية</h1><p>مغامرة تفاعلية للحصة التزامنية: انطلقي في خريطة المحطات، أنجزي الأنشطة، واجمعي النجوم حتى تصلي إلى الكنز.</p></div><img src="img/shop.webp" alt="" style="animation:float 5s ease-in-out infinite"></section>
  <div class="lessons">${card("l1","الجزء الأول",["تعريف التجارة الإلكترونية والأنظمة التي تعتمد عليها","مزايا وعيوب التجارة الإلكترونية (لعبة الميزان)","نماذج B2B و B2C و C2C والأسواق الإلكترونية"])}${card("l2","الجزء الثاني",["السلع الافتراضية وتحديد قيمتها","التسوق عبر الإنترنت وطرق العثور على المنتج","الدخول للمتجر الإلكتروني باستخدام LocalWP"])}</div>
- <div class="quick">${[["tap","ألعاب ترتيب وتصنيف"],["check","اختبارات قصيرة بتصحيح فوري"],["play","مقاطع فيديو للقيم والإثراء"],["timer","مؤقت ونقاط للمجموعات"]].map(([i,t])=>`<div class="tile on"><div class="ic">${ic(i)}</div>${t}</div>`).join("")}</div>
- <div class="howto"><span><kbd>T</kbd> المؤقت</span><span><kbd>R</kbd> اختيار طالبة</span><span><kbd>F</kbd> ملء الشاشة</span><span>تُحفظ الأسماء والنقاط والإجابات المكتوبة على هذا الجهاز فقط.</span></div></div>`;
+ <div class="quick">${[["tap","ألعاب ترتيب وتصنيف"],["check","اختبارات قصيرة بتصحيح فوري"],["play","مقاطع فيديو للقيم والإثراء"],["timer","مؤقت لكل نشاط"]].map(([i,t])=>`<div class="tile on"><div class="ic">${ic(i)}</div>${t}</div>`).join("")}</div>
+ <div class="howto"><span><kbd>T</kbd> المؤقت</span><span><kbd>F</kbd> ملء الشاشة</span><span>يُحفظ اسمك ونجومك وإجاباتك المكتوبة على هذا الجهاز فقط.</span></div></div>`;
  $$("[data-l]",main).forEach(b=>b.onclick=()=>go(b.dataset.l));
 }
 document.addEventListener("keydown",e=>{
@@ -950,7 +946,6 @@ document.addEventListener("keydown",e=>{
  if($("#layer").children.length&&e.key==="Escape"){closeLayer();return}
  const k=e.key;
  if(k==="t"||k==="T"||k==="ف")openTool("timer");
- else if(k==="r"||k==="R"||k==="ق")openTool("pick");
  else if(k==="f"||k==="F"||k==="ب")toggleFs();
 });
 
