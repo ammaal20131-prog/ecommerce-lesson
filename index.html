@@ -122,6 +122,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cert-code{background:#EEEBF9;color:#5E52B4;border:1px solid #CFC8F0;border-radius:8px;padding:clamp(2px,.5vw,6px) clamp(10px,2vw,20px);font-weight:600;font-size:clamp(.6rem,1.5vw,.95rem)}
 .certsteps{display:flex;flex-direction:column;gap:10px;width:min(860px,100%)}
 .cstep{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#fff;color:#1F1B36;border-radius:16px;padding:10px 14px}
+.cstep b svg{width:18px;height:18px;fill:#DCE38F;stroke:none}
+.cstep .btn.sent{background:var(--good);border-color:var(--good);color:#fff}
 .cstep b{width:34px;height:34px;border-radius:50%;background:#5E52B4;color:#fff;display:grid;place-items:center;font-family:var(--display);flex:none}
 .cstep span{flex:1;min-width:150px;font-weight:700}
 .cstep a.btn{text-decoration:none}
@@ -977,14 +979,29 @@ function showCert(){
   <div class="cert-badge">لقب الحصة: مستكشفة التجارة الإلكترونية</div>
   <div class="cert-code">إذا (اجتهدتِ) ← المستقبل = مشرق ✓</div>
   <div class="cert-foot"><div><small>معلمتك</small><b class="tname">أمل الشهري</b></div><div class="stars">${ic("star")}${ic("star")}${ic("star")}</div><div><small>نتمنى لكِ دوام التميّز</small><span class="sig"></span></div></div></div></div>
-  <div class="certsteps">${UPLOAD_URL?`<div class="cstep"><b>١</b><span>احفظي شهادتك على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div><div class="cstep"><b>٢</b><span>ارفعيها لمعلمتك في مجلد «ثالث متوسط»</span><a class="btn v" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("link")} رفع الشهادة لمعلمتي</a></div>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
+  <div class="certsteps">${CERT_ENDPOINT?`<div class="cstep"><b>${ic("star")}</b><span>أرسلي شهادتك ونتيجتك لمعلمتك بضغطة واحدة</span><button class="btn v" id="cSend">${ic("check")} أرسلي شهادتي لمعلمتي</button></div><div class="cstep"><span style="font-weight:600">وتستطيعين الاحتفاظ بنسخة على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div>`:UPLOAD_URL?`<div class="cstep"><b>١</b><span>احفظي شهادتك على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div><div class="cstep"><b>٢</b><span>ارفعيها لمعلمتك في مجلد «ثالث متوسط»</span><a class="btn v" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("link")} رفع الشهادة لمعلمتي</a></div>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
   <div class="row" style="justify-content:center">${sendBtn(adv.k,"أرسلي إجاباتك ونتيجتك لمعلمتك")}<button class="btn" id="cNext">انطلقي إلى المغامرة التالية</button><button class="btn" id="cClose">إغلاق</button></div><p id="cMsg" style="text-align:center;margin:0;color:#fff"></p></div>`;
  $(".scrim",layer).onclick=closeLayer;$("#cClose",layer).onclick=closeLayer;
  $("#cNext",layer).onclick=()=>{closeLayer();go(adv.k==="l1"?"l2":"l1")};
  $("#cSave",layer).onclick=()=>saveCert(name,L.name,n,date);
+ const cs=$("#cSend",layer);if(cs){if(store.get("sent-"+adv.k,false)){cs.innerHTML=ic("check")+" أُرسلت سابقًا · أرسلي مرة أخرى"}cs.onclick=()=>sendCert(cs)}
 }
-async function saveCert(name,lesson,n,date){
- const msg=$("#cMsg",layer);
+async function sendCert(btn){
+ const name=studentName()||"بدون اسم",L=LESSONS[adv.k],n=secs.length,date=hijri(),msg=$("#cMsg",layer);
+ btn.disabled=true;btn.textContent="جارٍ الإرسال…";
+ try{
+  const image=await certURL(name,L.name,n,date,"image/jpeg");
+  const log=store.get("log-"+adv.k,{});
+  const payload={name,lesson:L.name,stars:store.get("adv-"+adv.k,[]).length,total:n,date,
+   results:Object.entries(log).map(([t,v])=>`${t}: ${v.res}`).join(" | "),
+   answers:Object.entries(log).filter(([,v])=>v.txt).map(([t,v])=>`${t} ← ${v.txt}`).join(" || "),image};
+  await fetch(CERT_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+  store.set("sent-"+adv.k,true);
+  btn.innerHTML=ic("check")+" وصلت شهادتك لمعلمتك";btn.classList.add("sent");msg.textContent="تم إرسال شهادتك ونتيجتك إلى معلمتك أمل الشهري ✓";cheer("Upload complete: وصلت شهادتكِ لمعلمتكِ بنجاح!");
+ }catch(e){btn.disabled=false;btn.innerHTML=ic("redo")+" أعيدي المحاولة";msg.textContent="تعذّر الإرسال، تأكدي من اتصال الإنترنت وحاولي مرة أخرى."}
+}
+
+async function certURL(name,lesson,n,date,type){
  try{await document.fonts.ready}catch(e){}
  const W=1600,H=1130,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
  const V="#5E52B4",LI="#DCE38F",INK="#1F1B36",MU="#6B6688",D='"Alexandria","IBM Plex Sans Arabic",Tahoma,sans-serif',B='"IBM Plex Sans Arabic",Tahoma,sans-serif';
@@ -1005,7 +1022,10 @@ async function saveCert(name,lesson,n,date){
  [W/2-70,W/2,W/2+70].forEach((cx,i)=>star(cx,990,i==1?34:26,i==1?V:"#A79FE0"));
  x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("معلمتك",W-330,915);x.fillStyle="#5E52B4";x.font=`800 40px ${D}`;x.fillText("أمل الشهري",W-330,970);x.fillStyle=MU;x.font=`500 26px ${B}`;x.fillText("نتمنى لكِ دوام التميّز",330,940);
  x.strokeStyle=MU;x.lineWidth=2;[[330]].forEach(([cx])=>{x.beginPath();x.moveTo(cx-150,990);x.lineTo(cx+150,990);x.stroke()});
- const url=c.toDataURL("image/png");
+ return c.toDataURL(type||"image/png",.9);
+}
+async function saveCert(name,lesson,n,date){
+ const msg=$("#cMsg",layer);const url=await certURL(name,lesson,n,date);
  const a=document.createElement("a");a.href=url;a.download=`شهادة - ${name} - ${lesson}.png`;document.body.appendChild(a);a.click();a.remove();
  msg.innerHTML=`إذا لم يبدأ التنزيل تلقائيًا، اضغطي على الصورة مطوّلًا أو بالزر الأيمن واختاري «حفظ الصورة»:<br><img src="${url}" alt="شهادة ${esc(name)}" style="margin-top:8px;max-height:200px;border-radius:10px;border:1px solid var(--line)">`;
 }
@@ -1049,6 +1069,8 @@ $("#fsBtn").onclick=toggleFs;
 // ضعي هنا رابط النموذج المعبّأ مسبقًا من Microsoft Forms (بالقيم: NAME و LESSON و STARS و RESULTS و ANSWERS)
 const FORM_URL="";
 // رابط «طلب ملفات» لمجلد «ثالث متوسط» في OneDrive المدرسة
+// رابط تطبيق Google Apps Script الذي يحفظ الشهادات في مجلد «ثالث متوسط» في Google Drive
+const CERT_ENDPOINT="https://script.google.com/macros/s/AKfycbwQ4pMEf9pxBedHqVuROvwDXGa7swix5sb8umXViGQny9l1SSvOhbynsE4rNGMzeFmO/exec";
 const UPLOAD_URL="https://asrgirls-my.sharepoint.com/:f:/g/personal/t97254394_asrg_moe_gov_sa/IgAKHTvzYmqIRpUwTrBPKSQaAd85f9Io73Qt8dqPw2WdaRU";
 function logResult(el){
  const t=(($("h2",el)||{}).textContent||"نشاط").trim();
