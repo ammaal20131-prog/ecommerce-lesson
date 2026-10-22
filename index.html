@@ -92,7 +92,48 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .home .quick .tile{min-height:110px}
 @media (max-width:860px){.lhero,.home .quick{grid-template-columns:1fr 1fr}.lhero{grid-template-columns:1fr}.lhero img{max-height:170px}.sechead{grid-template-columns:auto minmax(0,1fr)}.sechead img{display:none}.mainnav a{padding:6px 8px}}
 @media (max-width:520px){.home .quick{grid-template-columns:1fr 1fr}.mainnav a[data-go=home]{display:none}}
-.brand-x{display:flex;align-items:center;gap:10px;min-width:0;flex:1}
+/* adventure map */
+.advmap{background:var(--surface);border:1px solid var(--line);border-radius:32px;padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;gap:18px;overflow:hidden;position:relative;
+  background-image:radial-gradient(var(--violet-soft) 1.5px,transparent 1.5px);background-size:22px 22px}
+.maphead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.maphead>div:first-child{min-width:0;flex:1}
+.starbox{display:flex;align-items:center;gap:6px;background:var(--lime);color:var(--lime-ink);border-radius:18px;padding:10px 16px;font-family:var(--display)}
+.starbox svg{width:28px;height:28px;fill:currentColor}
+.starbox b{font-size:1.8rem;line-height:1}
+.trail{position:relative;display:flex;flex-direction:column;align-items:center;gap:26px;padding-block:20px}
+.trail::before{content:"";position:absolute;top:30px;bottom:30px;left:50%;border-left:6px dotted var(--line);transform:translateX(-50%)}
+.stop{position:relative;display:flex;align-items:center;gap:14px;transform:translateX(calc(var(--o) * clamp(30px,9vw,110px)));width:min(100%,360px);justify-content:center}
+.stop .node{position:relative;z-index:1;flex:none;width:clamp(72px,9vw,92px);aspect-ratio:1;border-radius:50%;border:0;display:grid;place-items:center;
+  background:var(--violet);color:var(--violet-ink);box-shadow:0 7px 0 color-mix(in srgb,var(--violet) 60%,#000);transition:transform .15s}
+.stop .node:hover{transform:translateY(-3px)}
+.stop .node:active{transform:translateY(4px);box-shadow:0 3px 0 color-mix(in srgb,var(--violet) 60%,#000)}
+.stop .node svg{width:40%;height:40%;fill:none;stroke:currentColor;stroke-width:2}
+.stop.done .node{background:var(--lime);color:var(--lime-ink);box-shadow:0 7px 0 color-mix(in srgb,var(--lime) 55%,#000)}
+.stop.done .node svg{fill:currentColor}
+.stop.lock .node{background:var(--surface2);color:var(--muted);box-shadow:0 7px 0 var(--line);border:2px solid var(--line)}
+.stop.cur .node::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:4px solid var(--violet);opacity:.5;animation:ring 1.6s ease-out infinite}
+@keyframes ring{from{transform:scale(.85);opacity:.7}to{transform:scale(1.25);opacity:0}}
+.stop .lab{position:absolute;inset-inline-start:calc(50% + clamp(46px,5.5vw,58px));width:max-content;max-width:min(42vw,220px);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:6px 12px;font-weight:700;font-size:.95rem;line-height:1.5;z-index:2}
+.stop .lab small{display:block;color:var(--violet);font-size:.75rem}
+.stop.lock .lab{color:var(--muted)}
+.stop .hero-av{position:absolute;inset-inline-end:calc(50% + clamp(44px,5.5vw,56px));width:clamp(56px,7vw,76px);animation:float 2.4s ease-in-out infinite;z-index:2}
+.stop .bubble{position:absolute;top:-30px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--surface);font-weight:700;font-size:.8rem;border-radius:10px;padding:2px 10px;white-space:nowrap;z-index:3}
+.stop.chest .node{width:clamp(88px,11vw,112px);background:#E9A93B;color:#3B2405;box-shadow:0 7px 0 #A8701C}
+.stop.chest.lock .node{background:var(--surface2);color:var(--muted);box-shadow:0 7px 0 var(--line)}
+.shake{animation:shake .45s}
+.station{display:flex;flex-direction:column;gap:22px}
+.station.enter{animation:enter .45s ease-out}
+@keyframes enter{from{opacity:0;transform:translateY(18px)}}
+.station .sechead{margin-top:0}
+.stbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.stend{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:var(--violet-soft);border:2px dashed var(--violet);border-radius:24px;padding:18px 22px}
+.btn.big{font-size:1.1rem;padding:12px 22px;border-radius:16px}
+.btn.big svg{fill:var(--lime)}
+.subnav button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.subnav button.lockd{opacity:.5}
+.chestbig{width:120px;height:120px;border-radius:30px;background:#E9A93B;color:#3B2405;display:grid;place-items:center;animation:float 2.4s ease-in-out infinite}
+.chestbig svg{width:64px;height:64px}
+@media (max-width:640px){.trail{align-items:stretch}.trail::before{left:auto;right:36px;transform:none}.stop{transform:none;width:100%;justify-content:flex-start}.stop .node{width:72px}.stop .lab{position:static;max-width:none;flex:1;min-width:0;width:auto;font-size:.9rem}.stop .hero-av{display:none}.stop .bubble{left:36px}.stop.chest .node{width:80px}.lhero img{display:none}}
 .brand b{font-family:var(--display);font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .brand span{color:var(--muted);font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .logo{width:34px;height:34px;border-radius:10px;background:var(--violet);display:grid;place-items:center;flex:none}
@@ -416,7 +457,11 @@ const ICON={
  search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
  store:'<path d="M3 9l2-5h14l2 5M4 9v11h16V9M3 9h18M9 20v-6h6v6"/>',
  tap:'<path d="M9 11V5a2 2 0 0 1 4 0v6M13 10a2 2 0 0 1 4 0v2a2 2 0 0 1 3 1v2a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3l-2-3a2 2 0 0 1 3-2l1 1"/>',
- card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>'
+ card:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+ star:'<path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/>',
+ lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
+ map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2zM9 4v14M15 6v14"/>',
+ chest:'<path d="M3 10a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v9H3z"/><path d="M3 12h18M10 12v3h4v-3"/>'
 };
 const ic=(n,cls="")=>`<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[n]||""}</svg>`;
 
@@ -799,20 +844,70 @@ function renderLesson(k){
  site.insertAdjacentHTML("beforeend",`<div class="pager"><button class="btn" data-go2="home">الصفحة الرئيسية</button><button class="btn v" data-go2="${other}">انتقلي إلى ${esc(LESSONS[other].name)}</button></div>`);
  $$("[data-go2]",site).forEach(b=>b.onclick=()=>go(b.dataset.go2==="home"?null:b.dataset.go2));
  store.get("done-"+k,[]).forEach(id=>{const el=document.getElementById(id);if(el)mark(el)});
- const sn=$("#subnav");sn.innerHTML=secs.map(s=>`<button data-to="${s.id}">${esc(s.t)}</button>`).join("");sn.hidden=false;
- $$("button",sn).forEach(b=>b.onclick=()=>document.getElementById(b.dataset.to).scrollIntoView({behavior:"smooth"}));
+ buildAdventure(k,site);
  updMeter();
 }
+/* ---------- adventure ---------- */
+const ST_ICONS=["store","cart","globe","search","card","truck","bank","chat","mail","erp","tap","laptop","mobile","desktop","tablet"];
+const WAVE=[0,1,1.6,1,0,-1,-1.6,-1];
+let adv=null;
+function buildAdventure(k,site){
+ const hero=$(".lhero",site),pager=$(".pager",site);
+ const stations=secs.map((s,i)=>{const box=document.createElement("div");box.className="station";box.hidden=true;box.dataset.i=i;
+  const h0=document.getElementById(s.id);let n=h0;const nodes=[];while(n&&n!==pager&&!n.classList.contains("station")&&!(n!==h0&&n.classList.contains("sechead"))){nodes.push(n);n=n.nextElementSibling}
+  site.insertBefore(box,pager);nodes.forEach(x=>box.appendChild(x));
+  box.insertAdjacentHTML("afterbegin",`<div class="stbar"><button class="btn" data-back>${ic("map")} العودة إلى الخريطة</button><span class="chip mode">المحطة ${ar(i+1)} من ${ar(secs.length)}</span></div>`);
+  box.insertAdjacentHTML("beforeend",`<div class="stend"><div><b>أنهيتنّ هذه المحطة؟</b><div class="muted">اضغطي لجمع النجمة وفتح المحطة التالية على الخريطة.</div></div><button class="btn v big" data-finish>${ic("star")} اجمعي النجمة وتابعي المغامرة</button></div>`);
+  $("[data-back]",box).onclick=()=>showMap();
+  $("[data-finish]",box).onclick=()=>finishStation(i);
+  return box});
+ const map=document.createElement("section");map.className="advmap";site.insertBefore(map,stations[0]);
+ adv={k,stations,map,pager,hero,key:"adv-"+k,teacher:store.get("advfree",false)};
+ drawMap();showMap(true);
+ const sn=$("#subnav");sn.innerHTML=`<button data-map>${ic("map")} الخريطة</button>`+secs.map((s,i)=>`<button data-st="${i}">${ar(i+1)}. ${esc(s.t)}</button>`).join("");sn.hidden=false;
+ $("[data-map]",sn).onclick=()=>showMap();
+ $$("[data-st]",sn).forEach(b=>b.onclick=()=>{const i=+b.dataset.st;if(canOpen(i))openStation(i);else nudge(i)});
+}
+function advDone(){return store.get(adv.key,[])}
+function canOpen(i){const d=advDone();return adv.teacher||i===0||d.includes(i-1)||d.includes(i)}
+function drawMap(){
+ const d=advDone(),N=secs.length,cur=[...Array(N).keys()].find(i=>!d.includes(i));const all=d.length>=N;
+ const stars=d.length;
+ $("#advStars")&&( $("#advStars").textContent=ar(stars));
+ adv.map.innerHTML=`<div class="maphead"><div><div class="eyebrow"><i></i>خريطة المغامرة</div><h2 class="h2" style="margin-top:4px">رحلة المستكشفة في عالم التجارة الإلكترونية</h2><p class="muted" style="margin:4px 0 0">انطلقن من المحطة الأولى، أنجزن أنشطة كل محطة، واجمعن النجوم حتى تصلن إلى الكنز.</p></div>
+ <div class="starbox">${ic("star")}<b>${ar(stars)}</b><span>/ ${ar(N)}</span></div></div>
+ <div class="trail">${secs.map((s,i)=>{const st=d.includes(i)?"done":(canOpen(i)?(i===cur?"cur":"open"):"lock");const off=WAVE[i%WAVE.length];
+  return `<div class="stop ${st}" style="--o:${off}"><button class="node" data-i="${i}" aria-label="المحطة ${i+1}: ${esc(s.t)}">${st==="lock"?ic("lock"):st==="done"?ic("star"):ic(ST_ICONS[i%ST_ICONS.length])}</button><div class="lab"><small>المحطة ${ar(i+1)}</small>${esc(s.t)}</div>${i===cur?`<img class="hero-av" src="img/brain.webp" alt=""><span class="bubble">${i===0&&!stars?"ابدئي من هنا!":"المحطة التالية"}</span>`:""}</div>`}).join("")}
+  <div class="stop chest ${all?"cur":"lock"}" style="--o:0"><button class="node" data-chest aria-label="الكنز">${ic("chest")}</button><div class="lab"><small>نهاية المغامرة</small>الكنز</div></div></div>
+ <div class="row" style="justify-content:center"><label class="chip" style="cursor:pointer"><input type="checkbox" id="advFree" ${adv.teacher?"checked":""}> وضع المعلمة: فتح كل المحطات</label><button class="btn" id="advReset">${ic("redo")} بدء المغامرة من جديد</button></div>`;
+ $$(".node[data-i]",adv.map).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(canOpen(i))openStation(i);else nudge(i)});
+ $("[data-chest]",adv.map).onclick=()=>{if(all)treasure();else{const el=$(".chest",adv.map);el.classList.remove("shake");void el.offsetWidth;el.classList.add("shake")}};
+ $("#advFree",adv.map).onchange=e=>{adv.teacher=e.target.checked;store.set("advfree",adv.teacher);drawMap()};
+ $("#advReset",adv.map).onclick=()=>{store.set(adv.key,[]);drawMap()};
+ $$("#subnav [data-st]").forEach(b=>{const i=+b.dataset.st;b.classList.toggle("lockd",!canOpen(i));b.querySelector(".ok")||d.includes(i)&&b.insertAdjacentHTML("afterbegin",'<span class="ok">✓</span>')});
+}
+function nudge(i){const n=$(`.node[data-i="${i}"]`,adv.map);showMap();if(n){const p=n.parentNode;p.classList.remove("shake");void p.offsetWidth;p.classList.add("shake");n.scrollIntoView({block:"center",behavior:"smooth"})}}
+function showMap(first){adv.stations.forEach(s=>s.hidden=true);adv.map.hidden=false;adv.pager.hidden=false;adv.hero.hidden=false;
+ $$("#subnav button").forEach(b=>b.classList.toggle("cur",b.hasAttribute("data-map")));drawMap();
+ if(!first){const c=$(".stop.cur",adv.map);window.scrollTo({top:0});c&&setTimeout(()=>c.scrollIntoView({block:"center",behavior:"smooth"}),50)}}
+function openStation(i){adv.map.hidden=true;adv.pager.hidden=true;adv.hero.hidden=true;adv.stations.forEach((s,j)=>s.hidden=j!==i);
+ $$("#subnav button").forEach(b=>b.classList.toggle("cur",b.dataset.st===String(i)));const b=$(`#subnav [data-st="${i}"]`);b&&b.scrollIntoView({block:"nearest",inline:"center"});
+ $$("video").forEach(v=>v.pause());window.scrollTo({top:0});const s=adv.stations[i];s.classList.remove("enter");void s.offsetWidth;s.classList.add("enter")}
+function finishStation(i){const d=advDone();if(!d.includes(i)){d.push(i);store.set(adv.key,d)}burst();showMap();
+ if(d.length>=secs.length)setTimeout(treasure,700)}
+function treasure(){burst();setTimeout(burst,400);
+ const d=drawer("الكنز",`<div style="text-align:center;display:grid;gap:12px;justify-items:center"><div class="chestbig">${ic("chest")}</div><h2 class="h2" style="color:var(--violet)">أحسنتنّ يا مستكشفات!</h2><p style="margin:0;font-weight:600">أنهيتنّ مغامرة «${esc(LESSONS[adv.k].name)}» وجمعتنّ ${ar(secs.length)} نجمة.</p><div class="answer">لقب الحصة: مستكشفة التجارة الإلكترونية</div><button class="btn v" id="tNext">انطلقي إلى المغامرة التالية</button></div>`);
+ $("#tNext",d).onclick=()=>{closeLayer();go(adv.k==="l1"?"l2":"l1")}}
 function go(lesson){
  cur=lesson;$$(".mainnav a").forEach(a=>a.classList.toggle("cur",a.dataset.go===(lesson||"home")));
- if(!lesson){$("#subnav").hidden=true;secs=[];renderHome()}else{$("#lessonName").textContent=LESSONS[lesson].short;renderLesson(lesson)}
+ adv=null;if(!lesson){$("#subnav").hidden=true;secs=[];renderHome()}else{$("#lessonName").textContent=LESSONS[lesson].short;renderLesson(lesson)}
  try{history.replaceState(null,"","#"+(lesson||"home"))}catch(e){}
  window.scrollTo(0,0);onScroll();
 }
 function onScroll(){
  const h=document.documentElement,max=h.scrollHeight-innerHeight;$("#readFill").style.width=(max>0?scrollY/max*100:0)+"%";
  $("#toTop").hidden=scrollY<600;
- if(!secs.length)return;const off=$(".top").offsetHeight+30;let c=secs[0].id;
+ if(!secs.length||adv)return;const off=$(".top").offsetHeight+30;let c=secs[0].id;
  secs.forEach(s=>{const e=document.getElementById(s.id);if(e&&e.getBoundingClientRect().top<off)c=s.id});
  $$("#subnav button").forEach(b=>{const on=b.dataset.to===c;if(on&&!b.classList.contains("cur")){b.classList.add("cur");b.scrollIntoView({block:"nearest",inline:"center"})}else if(!on)b.classList.remove("cur")});
 }
@@ -821,8 +916,8 @@ $("#toTop").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
 $("#brandBtn").onclick=()=>go(null);
 function renderHome(){
  $("#lessonName").textContent="التجارة الإلكترونية";
- const card=(k,n,items)=>{const L=LESSONS[k];const d=store.get("done-"+k,[]).length;return `<div class="lcard"><div class="num">${n}</div><h3>${esc(L.name)}</h3><ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>${d?`<div class="muted" style="font-size:.88rem">أنجزتنّ ${ar(d)} من الأنشطة</div>`:""}<div class="row" style="margin-top:auto"><button class="go" data-l="${k}">ادخلي الدرس</button></div></div>`};
- main.innerHTML=`<div class="home"><section class="hero"><div><span class="tag">الوحدة الثالثة · الدرس الأول</span><h1>مقدمة في التجارة الإلكترونية</h1><p>موقع تفاعلي للحصة التزامنية: تعلّمي، العبي، وتحدّي مجموعتك في كل قسم.</p></div><img src="img/shop.webp" alt="" style="animation:float 5s ease-in-out infinite"></section>
+ const card=(k,n,items)=>{const L=LESSONS[k];const d=store.get("done-"+k,[]).length;return `<div class="lcard"><div class="num">${n}</div><h3>${esc(L.name)}</h3><ul>${items.map(x=>`<li>${x}</li>`).join("")}</ul>${d?`<div class="muted" style="font-size:.88rem">أنجزتنّ ${ar(d)} من الأنشطة</div>`:""}<div class="row" style="margin-top:auto"><button class="go" data-l="${k}">ابدئي المغامرة</button></div></div>`};
+ main.innerHTML=`<div class="home"><section class="hero"><div><span class="tag">الوحدة الثالثة · الدرس الأول</span><h1>مقدمة في التجارة الإلكترونية</h1><p>مغامرة تفاعلية للحصة التزامنية: انطلقي في خريطة المحطات، أنجزي الأنشطة، واجمعي النجوم حتى تصلي إلى الكنز.</p></div><img src="img/shop.webp" alt="" style="animation:float 5s ease-in-out infinite"></section>
  <div class="lessons">${card("l1","الجزء الأول",["تعريف التجارة الإلكترونية والأنظمة التي تعتمد عليها","مزايا وعيوب التجارة الإلكترونية (لعبة الميزان)","نماذج B2B و B2C و C2C والأسواق الإلكترونية"])}${card("l2","الجزء الثاني",["السلع الافتراضية وتحديد قيمتها","التسوق عبر الإنترنت وطرق العثور على المنتج","الدخول للمتجر الإلكتروني باستخدام LocalWP"])}</div>
  <div class="quick">${[["tap","ألعاب ترتيب وتصنيف"],["check","اختبارات قصيرة بتصحيح فوري"],["play","مقاطع فيديو للقيم والإثراء"],["timer","مؤقت ونقاط للمجموعات"]].map(([i,t])=>`<div class="tile on"><div class="ic">${ic(i)}</div>${t}</div>`).join("")}</div>
  <div class="howto"><span><kbd>T</kbd> المؤقت</span><span><kbd>R</kbd> اختيار طالبة</span><span><kbd>F</kbd> ملء الشاشة</span><span>تُحفظ الأسماء والنقاط والإجابات المكتوبة على هذا الجهاز فقط.</span></div></div>`;
