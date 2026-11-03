@@ -931,10 +931,11 @@ function showCert(){
   <div class="cert-badge">لقب الحصة: مستكشفة التجارة الإلكترونية</div>
   <div class="cert-code">إذا (اجتهدتِ) ← المستقبل = مشرق ✓</div>
   <div class="cert-foot"><div><small>معلمتك</small><b class="tname">أمل الشهري</b></div><div class="stars">${ic("star")}${ic("star")}${ic("star")}</div><div><small>نتمنى لكِ دوام التميّز</small><span class="sig"></span></div></div></div></div>
-  <div class="certsteps">${CERT_ENDPOINT?`<div class="cstep"><b>${ic("star")}</b><span>أرسلي شهادتك ونتيجتك لمعلمتك بضغطة واحدة</span><button class="btn v" id="cSend">${ic("check")} أرسلي شهادتي لمعلمتي</button></div><div class="cstep"><span style="font-weight:600">وتستطيعين الاحتفاظ بنسخة على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div>`:UPLOAD_URL?`<div class="cstep"><b>١</b><span>احفظي شهادتك على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div><div class="cstep"><b>٢</b><span>ارفعيها لمعلمتك في مجلد «التعاملات عبر الإنترنت»</span><a class="btn v" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("link")} رفع الشهادة لمعلمتي</a></div>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
+  <div class="certsteps">${CERT_ENDPOINT?`<div class="cstep"><b>${ic("star")}</b><span>أرسلي شهادتك ونتيجتك لمعلمتك بضغطة واحدة</span><button class="btn v" id="cSend">${ic("check")} إرسال لمعلمتي</button></div><button id="cSave" hidden></button>`:UPLOAD_URL?`<div class="cstep"><b>${ic("star")}</b><span>أرسلي شهادتك لمعلمتك<small style="display:block;font-weight:500;color:#6B6688">تُحفظ شهادتك وتُفتح صفحة الإرسال: اختاري صورة الشهادة ثم اضغطي «رفع»</small></span><a class="btn v" id="cUp" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("check")} أرسلي لمعلمتي</a></div><button id="cSave" hidden></button>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
   <div class="row" style="justify-content:center">${sendBtn(adv.k,"أرسلي إجاباتك ونتيجتك لمعلمتك")}<button class="btn" id="cClose">إغلاق</button></div><p id="cMsg" style="text-align:center;margin:0;color:#fff"></p></div>`;
  $(".scrim",layer).onclick=closeLayer;$("#cClose",layer).onclick=closeLayer;
  $("#cSave",layer).onclick=()=>saveCert(name,L.name,n,date);
+ const cu=$("#cUp",layer);if(cu)cu.addEventListener("click",()=>{saveCert(name,L.name,n,date);cu.innerHTML=ic("check")+" فُتحت صفحة الإرسال";cheer("Upload: اختاري صورة الشهادة واضغطي رفع")});
  const cs=$("#cSend",layer);if(cs){if(store.get("sent-"+adv.k,false)){cs.innerHTML=ic("check")+" أُرسلت سابقًا · أرسلي مرة أخرى"}cs.onclick=()=>sendCert(cs)}
 }
 async function sendCert(btn){
@@ -943,7 +944,7 @@ async function sendCert(btn){
  try{
   const image=await certURL(name,L.name,n,date,"image/jpeg");
   const log=store.get("log-"+adv.k,{});
-  const payload={name,lesson:L.name,stars:store.get("adv-"+adv.k,[]).length,total:n,date,
+  const payload={folder:CERT_FOLDER,name,lesson:L.name,stars:store.get("adv-"+adv.k,[]).length,total:n,date,
    results:Object.entries(log).map(([t,v])=>`${t}: ${v.res}`).join(" | "),
    answers:Object.entries(log).filter(([,v])=>v.txt).map(([t,v])=>`${t} ← ${v.txt}`).join(" || "),image};
   await fetch(CERT_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
@@ -1021,8 +1022,9 @@ $("#fsBtn").onclick=toggleFs;
 const FORM_URL="";
 // رابط «طلب ملفات» لمجلد «ثالث متوسط» في OneDrive المدرسة
 // رابط تطبيق Google Apps Script الذي يحفظ الشهادات في مجلد «ثالث متوسط» في Google Drive
-const CERT_ENDPOINT="";
-const UPLOAD_URL="https://asrgirls-my.sharepoint.com/:f:/g/personal/t97254394_asrg_moe_gov_sa/IgCynvMgyzG_Q6yYvJmrmZ8oAVoifaZqghjO0PMdDuiPev8";
+const CERT_ENDPOINT="https://script.google.com/macros/s/AKfycbwQ4pMEf9pxBedHqVuROvwDXGa7swix5sb8umXViGQny9l1SSvOhbynsE4rNGMzeFmO/exec";
+const CERT_FOLDER="التعاملات عبر الإنترنت";
+const UPLOAD_URL="";
 function logResult(el){
  const t=(($("h2",el)||{}).textContent||"نشاط").trim();
  const qq=$("#qq",el),sc=$(".score",el);
