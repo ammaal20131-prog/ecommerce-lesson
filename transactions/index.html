@@ -931,7 +931,7 @@ function showCert(){
   <div class="cert-badge">لقب الحصة: مستكشفة التجارة الإلكترونية</div>
   <div class="cert-code">إذا (اجتهدتِ) ← المستقبل = مشرق ✓</div>
   <div class="cert-foot"><div><small>معلمتك</small><b class="tname">أمل الشهري</b></div><div class="stars">${ic("star")}${ic("star")}${ic("star")}</div><div><small>نتمنى لكِ دوام التميّز</small><span class="sig"></span></div></div></div></div>
-  <div class="certsteps">${CERT_ENDPOINT?`<div class="cstep"><b>${ic("star")}</b><span>أرسلي شهادتك ونتيجتك لمعلمتك بضغطة واحدة</span><button class="btn v" id="cSend">${ic("check")} أرسلي شهادتي لمعلمتي</button></div><div class="cstep"><span style="font-weight:600">وتستطيعين الاحتفاظ بنسخة على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div>`:UPLOAD_URL?`<div class="cstep"><b>١</b><span>احفظي شهادتك على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div><div class="cstep"><b>٢</b><span>ارفعيها لمعلمتك في مجلد «ثالث متوسط»</span><a class="btn v" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("link")} رفع الشهادة لمعلمتي</a></div>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
+  <div class="certsteps">${CERT_ENDPOINT?`<div class="cstep"><b>${ic("star")}</b><span>أرسلي شهادتك ونتيجتك لمعلمتك بضغطة واحدة</span><button class="btn v" id="cSend">${ic("check")} أرسلي شهادتي لمعلمتي</button></div><div class="cstep"><span style="font-weight:600">وتستطيعين الاحتفاظ بنسخة على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div>`:UPLOAD_URL?`<div class="cstep"><b>١</b><span>احفظي شهادتك على جهازك</span><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة</button></div><div class="cstep"><b>٢</b><span>ارفعيها لمعلمتك في مجلد «التعاملات عبر الإنترنت»</span><a class="btn v" href="${esc(UPLOAD_URL)}" target="_blank" rel="noopener">${ic("link")} رفع الشهادة لمعلمتي</a></div>`:`<div class="cstep"><button class="btn l" id="cSave">${ic("down")} حفظ الشهادة صورة</button></div>`}</div>
   <div class="row" style="justify-content:center">${sendBtn(adv.k,"أرسلي إجاباتك ونتيجتك لمعلمتك")}<button class="btn" id="cClose">إغلاق</button></div><p id="cMsg" style="text-align:center;margin:0;color:#fff"></p></div>`;
  $(".scrim",layer).onclick=closeLayer;$("#cClose",layer).onclick=closeLayer;
  $("#cSave",layer).onclick=()=>saveCert(name,L.name,n,date);
@@ -1021,8 +1021,8 @@ $("#fsBtn").onclick=toggleFs;
 const FORM_URL="";
 // رابط «طلب ملفات» لمجلد «ثالث متوسط» في OneDrive المدرسة
 // رابط تطبيق Google Apps Script الذي يحفظ الشهادات في مجلد «ثالث متوسط» في Google Drive
-const CERT_ENDPOINT="https://script.google.com/macros/s/AKfycbwQ4pMEf9pxBedHqVuROvwDXGa7swix5sb8umXViGQny9l1SSvOhbynsE4rNGMzeFmO/exec";
-const UPLOAD_URL="https://asrgirls-my.sharepoint.com/:f:/g/personal/t97254394_asrg_moe_gov_sa/IgAKHTvzYmqIRpUwTrBPKSQaAd85f9Io73Qt8dqPw2WdaRU";
+const CERT_ENDPOINT="";
+const UPLOAD_URL="https://asrgirls-my.sharepoint.com/:f:/g/personal/t97254394_asrg_moe_gov_sa/IgCynvMgyzG_Q6yYvJmrmZ8oAVoifaZqghjO0PMdDuiPev8";
 function logResult(el){
  const t=(($("h2",el)||{}).textContent||"نشاط").trim();
  const qq=$("#qq",el),sc=$(".score",el);
